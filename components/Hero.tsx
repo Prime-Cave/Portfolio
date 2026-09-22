@@ -26,6 +26,9 @@ export default function Hero() {
           <span className={styles.pillDot} />
           Open to work
         </span>
+        <a href="/Tomisin-Akinfemiwa-CV.pdf" download className="accentLink">
+          Download CV ↓
+        </a>
         <a href="https://github.com/Prime-Cave" className="quietLink">
           GitHub
         </a>

@@ -15,6 +15,9 @@ export default function Contact() {
             Tomisin.Akinfemiwa@gmail.com
           </a>
           <div className={styles.links}>
+            <a href="/Tomisin-Akinfemiwa-CV.pdf" download className={styles.link}>
+              Download CV · PDF
+            </a>
             <a href="https://github.com/Prime-Cave" className={styles.link}>
               GitHub · Prime-Cave
             </a>

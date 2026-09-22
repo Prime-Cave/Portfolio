@@ -1,14 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
-export default function Reveal({
-  children,
-  style,
-}: {
-  children: ReactNode;
-  style?: CSSProperties;
-}) {
+export default function Reveal({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(true);
 
@@ -41,13 +35,9 @@ export default function Reveal({
   return (
     <div
       ref={ref}
-      style={{
-        ...style,
-        opacity: visible ? 1 : 0,
-        transform: visible ? "none" : "translateY(14px)",
-        transition:
-          "opacity 520ms cubic-bezier(.22,.61,.36,1), transform 520ms cubic-bezier(.22,.61,.36,1)",
-      }}
+      className={`transition-[opacity,transform] duration-[520ms] ease-[cubic-bezier(.22,.61,.36,1)] ${
+        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3.5"
+      }`}
     >
       {children}
     </div>

@@ -9,9 +9,9 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div style={{ background: "var(--bg)", minHeight: "100vh" }}>
+    <div className="bg-bg min-h-screen">
       <Nav />
-      <main id="top" className="container">
+      <main id="top" className="max-w-[1000px] mx-auto px-[clamp(20px,5vw,56px)]">
         <Hero />
         <About />
         <Work />

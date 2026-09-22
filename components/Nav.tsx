@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import styles from "./Nav.module.css";
 
 const SECTIONS = [
   { id: "about", label: "About" },
@@ -68,26 +67,26 @@ export default function Nav() {
   }, [active, wide]);
 
   return (
-    <nav className={styles.nav}>
-      <div className={styles.inner}>
-        <a href="#top" className={styles.brand}>
+    <nav className="fixed inset-x-0 top-0 z-50 bg-[rgba(14,14,16,0.86)] backdrop-blur-[8px] border-b border-hairline">
+      <div className="max-w-[1000px] mx-auto px-[clamp(20px,5vw,56px)] h-14 flex items-center justify-between gap-4">
+        <a href="#top" className="font-mono text-xs tracking-[0.08em] text-ink">
           T. Akinfemiwa
         </a>
         {wide ? (
-          <div id="navlinks" ref={linksRef} className={styles.links}>
+          <div id="navlinks" ref={linksRef} className="relative flex items-center gap-[clamp(14px,2.4vw,28px)]">
             {SECTIONS.map((s) => (
               <a
                 key={s.id}
                 data-nav={s.id}
                 data-active={active === s.id}
                 href={`#${s.id}`}
-                className={styles.link}
+                className="font-mono text-[11px] tracking-[0.14em] uppercase py-1 text-muted transition-colors duration-200 ease-out hover:text-ink data-[active=true]:text-ink"
               >
                 {s.label}
               </a>
             ))}
             <span
-              className={styles.indicator}
+              className="absolute -bottom-1.5 h-px bg-accent pointer-events-none transition-[left,width,opacity] duration-[260ms] ease-out"
               style={{
                 left: indicator ? indicator.left : 0,
                 width: indicator ? indicator.width : 0,
@@ -96,7 +95,9 @@ export default function Nav() {
             />
           </div>
         ) : (
-          <span className={styles.currentLabel}>{NAV_LABELS[active] ?? ""}</span>
+          <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-muted">
+            {NAV_LABELS[active] ?? ""}
+          </span>
         )}
       </div>
     </nav>

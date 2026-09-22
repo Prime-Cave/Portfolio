@@ -1,0 +1,172 @@
+.article {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: clamp(72px, 10vw, 112px);
+}
+
+.articleBordered {
+  composes: article;
+  padding-top: clamp(48px, 7vw, 72px);
+  border-top: 1px solid var(--hairline);
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.title {
+  font-size: clamp(26px, 4vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  font-weight: 500;
+  margin: 0;
+}
+
+.dek {
+  font-size: clamp(17px, 2vw, 19px);
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 0;
+  max-width: 64ch;
+  text-wrap: pretty;
+}
+
+.paras {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 68ch;
+}
+
+.p {
+  font-size: 16px;
+  line-height: 1.66;
+  color: var(--muted);
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.code {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--ink);
+}
+
+.figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.frame {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 24px 48px -28px rgba(0, 0, 0, 0.9);
+  transition:
+    transform 240ms ease-out,
+    box-shadow 240ms ease-out,
+    border-color 240ms ease-out;
+}
+.frame:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 30px 56px -26px rgba(0, 0, 0, 0.95);
+  border-color: var(--accent);
+}
+
+.frameBar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px 10px;
+}
+
+.frameDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--hairline);
+}
+
+.frameImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 7px;
+}
+
+.caption {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  max-width: 70ch;
+}
+
+.figureGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.pillRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.linkRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+}
+
+.metaText {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.also {
+  margin-top: clamp(48px, 7vw, 72px);
+  padding-top: clamp(32px, 5vw, 48px);
+  border-top: 1px solid var(--hairline);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 40px;
+  align-items: baseline;
+}
+
+.alsoLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  min-width: 120px;
+}
+
+.alsoP {
+  font-size: 16px;
+  line-height: 1.66;
+  color: var(--muted);
+  margin: 0;
+  max-width: 60ch;
+  text-wrap: pretty;
+}

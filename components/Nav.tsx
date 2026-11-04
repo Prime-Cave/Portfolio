@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import LogoMark from "./ui/LogoMark";
 
 const SECTIONS = [
   { id: "about", label: "About" },
@@ -69,8 +70,8 @@ export default function Nav() {
   return (
     <nav className="fixed inset-x-0 top-0 z-50 bg-[rgba(14,14,16,0.86)] backdrop-blur-[8px] border-b border-hairline">
       <div className="max-w-[1000px] mx-auto px-[clamp(20px,5vw,56px)] h-14 flex items-center justify-between gap-4">
-        <a href="#top" className="font-mono text-xs tracking-[0.08em] text-ink">
-          T. Akinfemiwa
+        <a href="#top" aria-label="Tomisin Akinfemiwa, back to top" className="flex font-mono text-xs tracking-[0.08em] text-ink">
+          <LogoMark size={28} />
         </a>
         {wide ? (
           <div id="navlinks" ref={linksRef} className="relative flex items-center gap-[clamp(14px,2.4vw,28px)]">

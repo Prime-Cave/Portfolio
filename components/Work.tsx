@@ -31,6 +31,11 @@ const dek = "text-[clamp(17px,2vw,19px)] leading-[1.5] text-ink m-0 max-w-[64ch]
 const bodyP = "text-base leading-[1.66] text-muted m-0 text-pretty";
 const pillRow = "flex flex-wrap gap-2";
 const linkRow = "flex flex-wrap gap-5 items-center";
+// From 1280px the video sits right of the copy and runs past the 888px column
+// into the page margin, keeping its labels legible. Below that it stays stacked.
+const mediaRow =
+  "flex flex-col gap-6 min-[1280px]:grid min-[1280px]:grid-cols-[360px_minmax(0,1fr)] min-[1280px]:gap-12 min-[1280px]:items-start min-[1280px]:w-[min(calc(50vw+396px),1240px)]";
+const mediaSlot = "order-first min-[1280px]:order-none";
 const bordered = "pt-[clamp(48px,7vw,72px)] border-t border-hairline";
 
 export default function Work() {
@@ -51,25 +56,28 @@ export default function Work() {
             </p>
           </div>
 
-          <LoopVideo
-            name="tfspace"
-            label="Animated architecture diagram of TFSpace. Google OAuth, phone OTP and email OTP flow into one JWT session layer, then a ten-role RBAC gate, then fan out to separate workspaces, each on its own subdomain and holding spaces with properties and timelines. Around that core sit the NestJS API, Docker and Kubernetes, PostgreSQL with Prisma, Supabase storage and SendGrid email, and Socket.io pushes live updates along the lines as small pulses."
-            caption="Three auth flows, one JWT session layer, ten roles of RBAC and a separate workspace per tenant, on NestJS with Prisma and PostgreSQL, Supabase, SendGrid, Docker and Kubernetes. Socket.io pushes live updates."
-          />
-
-          <div className="flex flex-col gap-4.5 max-w-[68ch]">
-            <p className={bodyP}>
-              I built the backend on my own: NestJS and TypeScript over Prisma and PostgreSQL, with a
-              multi-tenant data model that gives each workspace its own subdomain. Three separate auth
-              flows (Google OAuth, phone OTP, email OTP) resolve into a single JWT session layer, with ten
-              roles of RBAC on top. Supabase handles file storage, SendGrid the transactional email, and
-              bulk create/update endpoints for properties and timelines are called out in the README as a
-              deliberate efficiency decision.
-            </p>
-            <p className={bodyP}>
-              The frontend, live at tfspaces.com, was built with the team: Next.js 15, React 19, real-time
-              sockets, and a Storybook-documented component library.
-            </p>
+          <div className={mediaRow}>
+            <div className="flex flex-col gap-4.5 max-w-[68ch]">
+              <p className={bodyP}>
+                I built the backend on my own: NestJS and TypeScript over Prisma and PostgreSQL, with a
+                multi-tenant data model that gives each workspace its own subdomain. Three separate auth
+                flows (Google OAuth, phone OTP, email OTP) resolve into a single JWT session layer, with ten
+                roles of RBAC on top. Supabase handles file storage, SendGrid the transactional email, and
+                bulk create/update endpoints for properties and timelines are called out in the README as a
+                deliberate efficiency decision.
+              </p>
+              <p className={bodyP}>
+                The frontend, live at tfspaces.com, was built with the team: Next.js 15, React 19, real-time
+                sockets, and a Storybook-documented component library.
+              </p>
+            </div>
+            <div className={mediaSlot}>
+              <LoopVideo
+                name="tfspace"
+                label="Animated architecture diagram of TFSpace. Google OAuth, phone OTP and email OTP flow into one JWT session layer, then a ten-role RBAC gate, then fan out to separate workspaces, each on its own subdomain and holding spaces with properties and timelines. Around that core sit the NestJS API, Docker and Kubernetes, PostgreSQL with Prisma, Supabase storage and SendGrid email, and Socket.io pushes live updates along the lines as small pulses."
+                caption="Three auth flows, one JWT session layer, ten roles of RBAC and a separate workspace per tenant, on NestJS with Prisma and PostgreSQL, Supabase, SendGrid, Docker and Kubernetes. Socket.io pushes live updates."
+              />
+            </div>
           </div>
 
           <ScreenshotFrame
@@ -126,33 +134,38 @@ export default function Work() {
             </p>
           </div>
 
-          <LoopVideo
-            name="elvindake"
-            label="Animated migration diagram of the ElvinDake storefront. The storefront stays unchanged in the middle while content blocks move from Shopify metaobjects on the left into Sanity on the right, and the stack serving it swaps from the Shopify Liquid theme, built first and run from the Shopify admin, to Hydrogen on Oxygen with GraphQL."
-            caption="The Liquid theme came first. Content then moves from Shopify metaobjects into Sanity and the stack swaps to Hydrogen on Oxygen, while the storefront stays the same."
-          />
+          <div className={mediaRow}>
+            <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-4.5 max-w-[68ch]">
+                <p className={bodyP}>
+                  I built the store first as a custom Shopify Liquid theme and managed its Shopify dashboard,
+                  then transferred it to Shopify Hydrogen on Oxygen, with Sanity as the content layer and
+                  GraphQL codegen. The CSS is a 1:1 port of my Liquid stylesheet so both versions could be
+                  compared side by side,
+                  which is how a specificity bug surfaced. Content started out in Shopify metaobjects and I
+                  ported it to Sanity, so editorial changes no longer depend on raw Shopify field arrays.
+                </p>
+              </div>
 
-          <div className="flex flex-col gap-4.5 max-w-[68ch]">
-            <p className={bodyP}>
-              I built the store first as a custom Shopify Liquid theme and managed its Shopify dashboard,
-              then transferred it to Shopify Hydrogen on Oxygen, with Sanity as the content layer and
-              GraphQL codegen. The CSS is a 1:1 port of my Liquid stylesheet so both versions could be
-              compared side by side,
-              which is how a specificity bug surfaced. Content started out in Shopify metaobjects and I
-              ported it to Sanity, so editorial changes no longer depend on raw Shopify field arrays.
-            </p>
-          </div>
+              <div className={pillRow}>
+                {TAGS_ELVINDAKE.map((t) => (
+                  <TagPill key={t}>{t}</TagPill>
+                ))}
+              </div>
 
-          <div className={pillRow}>
-            {TAGS_ELVINDAKE.map((t) => (
-              <TagPill key={t}>{t}</TagPill>
-            ))}
-          </div>
-
-          <div className={linkRow}>
-            <Link href="https://elvindake.com" variant="accent">
-              elvindake.com ↗
-            </Link>
+              <div className={linkRow}>
+                <Link href="https://elvindake.com" variant="accent">
+                  elvindake.com ↗
+                </Link>
+              </div>
+            </div>
+            <div className={mediaSlot}>
+              <LoopVideo
+                name="elvindake"
+                label="Animated migration diagram of the ElvinDake storefront. The storefront stays unchanged in the middle while content blocks move from Shopify metaobjects on the left into Sanity on the right, and the stack serving it swaps from the Shopify Liquid theme, built first and run from the Shopify admin, to Hydrogen on Oxygen with GraphQL."
+                caption="The Liquid theme came first. Content then moves from Shopify metaobjects into Sanity and the stack swaps to Hydrogen on Oxygen, while the storefront stays the same."
+              />
+            </div>
           </div>
         </article>
       </Reveal>
@@ -200,30 +213,35 @@ export default function Work() {
             </p>
           </div>
 
-          <LoopVideo
-            name="pixl"
-            label="Animated diagram of PIXL. Three separate boxes, the renderer in pxcanvasrenderer.go, input in mouse.go and the brush package, stay apart while a small pixel-art plant is painted onto a canvas one cell at a time."
-            caption="Renderer, input and brushes stay in separate boxes while the canvas gets painted cell by cell."
-          />
+          <div className={mediaRow}>
+            <div className="flex flex-col gap-6">
+              <p className={`${bodyP} max-w-[68ch]`}>
+                Go and Fyne, with the canvas renderer written by hand in{" "}
+                <span className="font-mono text-sm text-ink">pxcanvasrenderer.go</span>, mouse input handled
+                separately in <span className="font-mono text-sm text-ink">mouse.go</span>, and brush behaviour
+                in its own package. Rendering, input and UI stay apart, which is the whole reason the thing
+                stayed editable.
+              </p>
 
-          <p className={`${bodyP} max-w-[68ch]`}>
-            Go and Fyne, with the canvas renderer written by hand in{" "}
-            <span className="font-mono text-sm text-ink">pxcanvasrenderer.go</span>, mouse input handled
-            separately in <span className="font-mono text-sm text-ink">mouse.go</span>, and brush behaviour
-            in its own package. Rendering, input and UI stay apart, which is the whole reason the thing
-            stayed editable.
-          </p>
+              <div className={pillRow}>
+                {TAGS_PIXL.map((t) => (
+                  <TagPill key={t}>{t}</TagPill>
+                ))}
+              </div>
 
-          <div className={pillRow}>
-            {TAGS_PIXL.map((t) => (
-              <TagPill key={t}>{t}</TagPill>
-            ))}
-          </div>
-
-          <div className={linkRow}>
-            <Link href="https://github.com/Prime-Cave/PIXL" variant="accent">
-              github.com/Prime-Cave/PIXL ↗
-            </Link>
+              <div className={linkRow}>
+                <Link href="https://github.com/Prime-Cave/PIXL" variant="accent">
+                  github.com/Prime-Cave/PIXL ↗
+                </Link>
+              </div>
+            </div>
+            <div className={mediaSlot}>
+              <LoopVideo
+                name="pixl"
+                label="Animated diagram of PIXL. Three separate boxes, the renderer in pxcanvasrenderer.go, input in mouse.go and the brush package, stay apart while a small pixel-art plant is painted onto a canvas one cell at a time."
+                caption="Renderer, input and brushes stay in separate boxes while the canvas gets painted cell by cell."
+              />
+            </div>
           </div>
         </article>
       </Reveal>

@@ -1,0 +1,5 @@
+[
+  { "id": "TFSpace", "name": "tfspace", "durationInFrames": 360, "posterFrame": 308 },
+  { "id": "ElvinDake", "name": "elvindake", "durationInFrames": 360, "posterFrame": 290 },
+  { "id": "PIXL", "name": "pixl", "durationInFrames": 300, "posterFrame": 250 }
+]

@@ -37,6 +37,11 @@
   ::selection {
     @apply bg-accent text-bg;
   }
+  /* The loop videos have no controls: a refused autoplay should show the poster. */
+  video::-webkit-media-controls-start-playback-button,
+  video::-webkit-media-controls-overlay-play-button {
+    display: none !important;
+  }
 }
 
 /* One-off decorative pieces that don't need per-instance utility overrides. */

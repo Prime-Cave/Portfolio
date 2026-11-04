@@ -14,6 +14,8 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Reference-only design handoff bundle, not part of the app.
     "portfolio-site-design-pass/**",
+    // Separate Remotion project with its own lint setup.
+    "video/**",
   ]),
 ]);
 

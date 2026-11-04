@@ -3,6 +3,7 @@ import SectionLabel from "./SectionLabel";
 import ChapterSection from "./ui/ChapterSection";
 import TagPill from "./ui/TagPill";
 import ScreenshotFrame from "./ui/ScreenshotFrame";
+import LoopVideo from "./ui/LoopVideo";
 import Link from "./ui/Link";
 
 const TAGS_TFSPACE = [
@@ -50,6 +51,12 @@ export default function Work() {
             </p>
           </div>
 
+          <LoopVideo
+            name="tfspace"
+            label="Animated architecture diagram of TFSpace. Google OAuth, phone OTP and email OTP flow into one JWT session layer, then a ten-role RBAC gate, then fan out to separate workspaces, each on its own subdomain and holding spaces with properties and timelines. Around that core sit the NestJS API, Docker and Kubernetes, PostgreSQL with Prisma, Supabase storage and SendGrid email, and Socket.io pushes live updates along the lines as small pulses."
+            caption="Three auth flows, one JWT session layer, ten roles of RBAC and a separate workspace per tenant, on NestJS with Prisma and PostgreSQL, Supabase, SendGrid, Docker and Kubernetes. Socket.io pushes live updates."
+          />
+
           <div className="flex flex-col gap-4.5 max-w-[68ch]">
             <p className={bodyP}>
               I built the backend on my own: NestJS and TypeScript over Prisma and PostgreSQL, with a
@@ -77,6 +84,7 @@ export default function Work() {
           <div className="grid [grid-template-columns:repeat(auto-fit,minmax(260px,1fr))] gap-5">
             <ScreenshotFrame
               src="/images/tfspace-space-analytics.png"
+              sizes="(max-width: 640px) 100vw, 434px"
               alt="TFSpace analytics panels"
               width={1440}
               height={902}
@@ -84,6 +92,7 @@ export default function Work() {
             />
             <ScreenshotFrame
               src="/images/tfspace-property-detail.png"
+              sizes="(max-width: 640px) 100vw, 434px"
               alt="TFSpace property detail screen"
               width={1441}
               height={901}
@@ -109,18 +118,26 @@ export default function Work() {
       <Reveal>
         <article className={`flex flex-col gap-6 mb-[clamp(72px,10vw,112px)] ${bordered}`}>
           <div className="flex flex-col gap-3.5">
-            <div className={eyebrow}>Headless commerce migration · Solo</div>
+            <div className={eyebrow}>Liquid theme to headless commerce · Solo</div>
             <h2 className={title}>ElvinDake Storefront</h2>
             <p className={dek}>
-              Move a live fashion brand off a custom Liquid theme onto a headless stack without the
-              storefront changing under its customers.
+              I built a live fashion brand&apos;s custom Liquid theme, then moved it onto a headless stack
+              without the storefront changing under its customers.
             </p>
           </div>
 
+          <LoopVideo
+            name="elvindake"
+            label="Animated migration diagram of the ElvinDake storefront. The storefront stays unchanged in the middle while content blocks move from Shopify metaobjects on the left into Sanity on the right, and the stack serving it swaps from the Shopify Liquid theme, built first and run from the Shopify admin, to Hydrogen on Oxygen with GraphQL."
+            caption="The Liquid theme came first. Content then moves from Shopify metaobjects into Sanity and the stack swaps to Hydrogen on Oxygen, while the storefront stays the same."
+          />
+
           <div className="flex flex-col gap-4.5 max-w-[68ch]">
             <p className={bodyP}>
-              Shopify Hydrogen on Oxygen, with Sanity as the content layer and GraphQL codegen. The CSS is
-              a 1:1 port of the old Liquid stylesheet so both versions could be compared side by side,
+              I built the store first as a custom Shopify Liquid theme and managed its Shopify dashboard,
+              then transferred it to Shopify Hydrogen on Oxygen, with Sanity as the content layer and
+              GraphQL codegen. The CSS is a 1:1 port of my Liquid stylesheet so both versions could be
+              compared side by side,
               which is how a specificity bug surfaced. Content started out in Shopify metaobjects and I
               ported it to Sanity, so editorial changes no longer depend on raw Shopify field arrays.
             </p>
@@ -182,6 +199,12 @@ export default function Work() {
               A pixel-art editor with no web platform underneath it. The canvas had to be drawn by hand.
             </p>
           </div>
+
+          <LoopVideo
+            name="pixl"
+            label="Animated diagram of PIXL. Three separate boxes, the renderer in pxcanvasrenderer.go, input in mouse.go and the brush package, stay apart while a small pixel-art plant is painted onto a canvas one cell at a time."
+            caption="Renderer, input and brushes stay in separate boxes while the canvas gets painted cell by cell."
+          />
 
           <p className={`${bodyP} max-w-[68ch]`}>
             Go and Fyne, with the canvas renderer written by hand in{" "}

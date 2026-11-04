@@ -34,9 +34,9 @@ export default function OpengraphImage() {
         <div style={{ display: "flex", fontSize: 76, fontWeight: 600, letterSpacing: -2, marginBottom: 28 }}>
           Tomisin Akinfemiwa
         </div>
-        <div style={{ display: "flex", fontSize: 34, lineHeight: 1.4, color: "#EAEAEA", maxWidth: 900 }}>
-          I solve hard problems and build the <span style={{ color: "#D9743F", marginLeft: 12 }}>systems</span>{" "}
-          around them.
+        <div style={{ display: "flex", fontSize: 34, lineHeight: 1.4, color: "#EAEAEA", maxWidth: 1008 }}>
+          I solve hard problems and build the <span style={{ color: "#34B67A", marginLeft: 12 }}>systems</span>
+          <span style={{ marginLeft: 12 }}>around them.</span>
         </div>
       </div>
     ),

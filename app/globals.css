@@ -7,8 +7,8 @@
   --color-ink: #eaeaea;
   --color-muted: #8a8a85;
   --color-hairline: #232326;
-  --color-accent: #d9743f;
-  --color-accent-hover: #e68a57;
+  --color-accent: #34b67a;
+  --color-accent-hover: #4cc38a;
 
   --font-sans: var(--font-geist), "Inter Tight", system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), "IBM Plex Mono", ui-monospace, monospace;
@@ -17,6 +17,12 @@
   --animate-drift-b: drift-b 34s ease-in-out infinite;
   --animate-grid-pan: grid-pan 14s linear infinite;
   --animate-hero-in: hero-in 640ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  --animate-hud-boot: hud-boot 900ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  --animate-hud-spin: hud-spin 60s linear infinite;
+  --animate-hud-breathe: hud-breathe 5s ease-in-out infinite;
+  --animate-hud-lock: hud-lock 720ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  --animate-hud-scan: hud-scan 1700ms cubic-bezier(0.45, 0, 0.55, 1) 180ms both;
+  --animate-hud-ping: hud-ping 3s ease-out infinite;
 }
 
 @layer base {
@@ -46,8 +52,8 @@
     @apply absolute -top-[20%] -left-[10%] w-[70vw] h-[70vw] max-w-[900px] max-h-[900px] rounded-full animate-drift-a;
     background: radial-gradient(
       circle at 50% 50%,
-      rgba(217, 116, 63, 0.16) 0%,
-      rgba(217, 116, 63, 0.05) 42%,
+      rgba(52, 182, 122, 0.16) 0%,
+      rgba(52, 182, 122, 0.05) 42%,
       transparent 68%
     );
     filter: blur(28px);
@@ -67,6 +73,59 @@
   .hero-fade {
     @apply absolute inset-0;
     background: linear-gradient(180deg, transparent 55%, var(--color-bg) 100%);
+  }
+  .hero-scan {
+    @apply absolute inset-0 animate-hud-scan;
+    border-top: 1px solid var(--color-accent);
+    background: linear-gradient(180deg, rgba(52, 182, 122, 0.05) 0%, transparent 90px);
+  }
+  .hud {
+    --hud-rx: 0deg;
+    --hud-ry: 0deg;
+    --hud-angle: -38deg;
+    perspective: 1100px;
+  }
+  /* Below this width the rings sit behind the text, so their left edge fades out. */
+  @media (max-width: 1199px) {
+    .hud {
+      mask-image: linear-gradient(90deg, transparent 8%, #000 52%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 8%, #000 52%);
+    }
+  }
+  .hud[data-paused="true"] * {
+    /* !important: the animate-* utilities reset play-state from a later layer. */
+    animation-play-state: paused !important;
+  }
+  .hud-gimbal {
+    transform: rotateX(var(--hud-rx)) rotateY(var(--hud-ry));
+    transform-style: preserve-3d;
+  }
+  .hud-glow {
+    background: radial-gradient(circle, rgba(52, 182, 122, 0.16) 0%, rgba(52, 182, 122, 0.04) 46%, transparent 70%);
+  }
+  .hud-sweep {
+    background: conic-gradient(from 0deg, rgba(52, 182, 122, 0.09), transparent 62deg);
+    mask-image: radial-gradient(circle, transparent 28%, #000 29%);
+    -webkit-mask-image: radial-gradient(circle, transparent 28%, #000 29%);
+  }
+  .hud-marker {
+    transform: rotate(var(--hud-angle));
+    transform-origin: 300px 300px;
+  }
+  .hud-readout > span {
+    @apply absolute whitespace-nowrap opacity-0;
+    left: 50%;
+    translate: -50% 0;
+    animation: hud-readout 16s linear infinite;
+  }
+  .hud-readout > span:nth-child(2) {
+    animation-delay: 4s;
+  }
+  .hud-readout > span:nth-child(3) {
+    animation-delay: 8s;
+  }
+  .hud-readout > span:nth-child(4) {
+    animation-delay: 12s;
   }
 }
 
@@ -114,6 +173,91 @@
   }
 }
 
+@keyframes hud-boot {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes hud-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes hud-breathe {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes hud-lock {
+  0% {
+    opacity: 0;
+    transform: scale(2.2);
+  }
+  55% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
+    opacity: 0.55;
+    transform: none;
+  }
+}
+
+@keyframes hud-scan {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  12% {
+    opacity: 0.55;
+  }
+  85% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
+@keyframes hud-ping {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  60%,
+  100% {
+    opacity: 0;
+    transform: scale(3.4);
+  }
+}
+
+@keyframes hud-readout {
+  0% {
+    opacity: 0;
+  }
+  2%,
+  23% {
+    opacity: 1;
+  }
+  25%,
+  100% {
+    opacity: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -126,7 +270,15 @@
   }
   .hero-grid,
   .hero-orb-a,
-  .hero-orb-b {
+  .hero-orb-b,
+  .hero-scan,
+  .hud-loop {
     animation: none !important;
+  }
+  .hero-scan {
+    display: none;
+  }
+  .hud-readout > span:first-child {
+    opacity: 1;
   }
 }

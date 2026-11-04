@@ -6,6 +6,7 @@ export default function ScreenshotFrame({
   caption,
   width,
   height,
+  sizes = "(max-width: 1000px) 100vw, 888px",
   withBar,
 }: {
   src: string;
@@ -13,6 +14,7 @@ export default function ScreenshotFrame({
   caption: string;
   width: number;
   height: number;
+  sizes?: string;
   withBar?: boolean;
 }) {
   return (
@@ -25,7 +27,7 @@ export default function ScreenshotFrame({
             <span className="w-[7px] h-[7px] rounded-full bg-hairline" />
           </div>
         )}
-        <Image src={src} alt={alt} width={width} height={height} className="block w-full h-auto rounded-[7px]" />
+        <Image src={src} alt={alt} width={width} height={height} sizes={sizes} className="block w-full h-auto rounded-[7px]" />
       </div>
       <figcaption className="font-mono text-[11px] leading-[1.6] tracking-[0.04em] text-muted max-w-[70ch]">
         {caption}

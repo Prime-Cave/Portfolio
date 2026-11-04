@@ -21,7 +21,7 @@ export default function AppleIcon() {
           color: "#EAEAEA",
         }}
       >
-        T<span style={{ color: "#D9743F" }}>A</span>
+        T<span style={{ color: "#34B67A" }}>A</span>
       </div>
     ),
     { ...size },

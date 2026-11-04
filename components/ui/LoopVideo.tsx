@@ -23,6 +23,7 @@ export default function LoopVideo({
   caption: string;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
+  const inView = useRef(false);
   const [near, setNear] = useState(false);
   const [seen, setSeen] = useState(false);
   const reduced = useSyncExternalStore(
@@ -60,6 +61,7 @@ export default function LoopVideo({
 
     const io = new IntersectionObserver(
       ([entry]) => {
+        inView.current = entry.isIntersecting;
         if (!entry.isIntersecting) {
           video.pause();
           return;
@@ -82,6 +84,22 @@ export default function LoopVideo({
     if (active) video.play().catch(() => {});
   }, [active]);
 
+  // Phones can refuse autoplay outright, as iOS does in Low Power Mode. The poster
+  // stays up in that case, and a tap anywhere is the gesture that lets it play.
+  useEffect(() => {
+    if (!active) return;
+    const resume = () => {
+      const video = ref.current;
+      if (video?.paused && inView.current) video.play().catch(() => {});
+    };
+    window.addEventListener("touchend", resume, { passive: true });
+    window.addEventListener("click", resume);
+    return () => {
+      window.removeEventListener("touchend", resume);
+      window.removeEventListener("click", resume);
+    };
+  }, [active]);
+
   return (
     <figure className="m-0 flex flex-col gap-3.5">
       <div className="bg-surface border border-hairline rounded-xl p-2 shadow-[0_24px_48px_-28px_rgba(0,0,0,0.9)] transition-[transform,box-shadow,border-color] duration-[240ms] ease-out hover:-translate-y-[3px] hover:border-accent hover:shadow-[0_30px_56px_-26px_rgba(0,0,0,0.95)]">
@@ -100,8 +118,8 @@ export default function LoopVideo({
         >
           {active && (
             <>
-              <source src={`/videos/${name}.webm?v=${VIDEO_VERSION}`} type="video/webm" />
               <source src={`/videos/${name}.mp4?v=${VIDEO_VERSION}`} type="video/mp4" />
+              <source src={`/videos/${name}.webm?v=${VIDEO_VERSION}`} type="video/webm" />
             </>
           )}
         </video>

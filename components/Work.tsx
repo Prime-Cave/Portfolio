@@ -2,7 +2,7 @@ import Reveal from "./Reveal";
 import SectionLabel from "./SectionLabel";
 import ChapterSection from "./ui/ChapterSection";
 import TagPill from "./ui/TagPill";
-import ScreenshotFrame from "./ui/ScreenshotFrame";
+import ScreenshotFrame, { CAPTION } from "./ui/ScreenshotFrame";
 import LoopVideo from "./ui/LoopVideo";
 import Link from "./ui/Link";
 
@@ -19,11 +19,79 @@ const TAGS_TFSPACE = [
   "Kubernetes",
 ];
 
-const TAGS_ELVINDAKE = ["Hydrogen", "React Router 7", "Oxygen", "Sanity", "GraphQL + codegen"];
+const TAGS_ANTIFREEZE = ["Go", "Wails v3", "cgo + AppKit", "SQLite", "TypeScript", "Vite"];
+
+const TAGS_NETWORK = [
+  "Flutter",
+  "Dart",
+  "NestJS",
+  "Prisma",
+  "PostgreSQL",
+  "Socket.io",
+  "Sentry",
+];
+
+const NETWORK_SCREENS = [
+  { src: "/images/network-home.png", alt: "The Network home feed with a Meet today card and a post" },
+  { src: "/images/network-people.png", alt: "The Network People deck suggesting a student you were both at an event with" },
+  { src: "/images/network-chat.png", alt: "The Network chat list with message requests and a streak" },
+];
+
+const TAGS_ELVINDAKE =["Hydrogen", "React Router 7", "Oxygen", "Sanity", "GraphQL + codegen"];
 
 const TAGS_PETRA = ["React 19", "TypeScript", "Vite", "Tailwind", "Framer Motion", "Cloudinary", "EmailJS"];
 
 const TAGS_PIXL = ["Go", "Fyne v2", "Custom renderer"];
+
+// The short list at the top of Work. Each id matches an <article> below.
+// To add a project: add a row here and an article with the same id.
+const PROJECTS = [
+  {
+    id: "tfspace",
+    name: "TFSpace",
+    summary: "Multi-tenant real-estate workspaces: three sign-in flows, one session layer, ten roles.",
+    stack: "NestJS · Prisma · PostgreSQL",
+    status: "Live",
+  },
+  {
+    id: "anti-freeze",
+    name: "Anti-Freeze",
+    summary: "A Mac menu bar app that warns you before memory runs out, and names the app to blame.",
+    stack: "Go · Wails · SQLite",
+    status: "Open source",
+  },
+  {
+    id: "the-network",
+    name: "The Network",
+    summary: "A social app for ALU students: meeting people, chat, posts, clubs and events.",
+    stack: "Flutter · NestJS",
+    status: "In development",
+  },
+  {
+    id: "elvindake",
+    name: "ElvinDake Storefront",
+    summary: "A live fashion store moved from a Liquid theme to headless Hydrogen.",
+    stack: "Hydrogen · Sanity · GraphQL",
+    status: "Live",
+  },
+  {
+    id: "petra-house",
+    name: "Petra House Andover",
+    summary: "A church site joining sermons, programmes and prayer requests.",
+    stack: "React · Vite · Tailwind",
+    status: "Live",
+  },
+  {
+    id: "pixl",
+    name: "PIXL",
+    summary: "A native pixel-art editor with its own canvas renderer.",
+    stack: "Go · Fyne",
+    status: "Open source",
+  },
+];
+
+// Articles get an id for the index; scroll-mt keeps the title clear of the fixed nav.
+const anchor = "scroll-mt-[72px]";
 
 const eyebrow = "font-mono text-[11px] tracking-[0.16em] uppercase text-muted";
 const title = "text-[clamp(26px,4vw,40px)] leading-[1.1] tracking-[-0.025em] font-medium m-0";
@@ -31,24 +99,62 @@ const dek = "text-[clamp(17px,2vw,19px)] leading-[1.5] text-ink m-0 max-w-[64ch]
 const bodyP = "text-base leading-[1.66] text-muted m-0 text-pretty";
 const pillRow = "flex flex-wrap gap-2";
 const linkRow = "flex flex-wrap gap-5 items-center";
-// From 1280px the video sits right of the copy and runs past the 888px column
-// into the page margin, keeping its labels legible. Below that it stays stacked.
+// From 1280px the section outgrows the 888px column by the same amount on both
+// sides, so the video can sit right of the copy and stay legible while the whole
+// section remains centred on the page. Below that it stays stacked.
+const wideSection =
+  "min-[1280px]:w-[min(100vw-96px,1240px)] min-[1280px]:ml-[calc(50%-min(50vw-48px,620px))]";
 const mediaRow =
-  "flex flex-col gap-6 min-[1280px]:grid min-[1280px]:grid-cols-[360px_minmax(0,1fr)] min-[1280px]:gap-12 min-[1280px]:items-start min-[1280px]:w-[min(calc(50vw+396px),1240px)]";
+  "flex flex-col gap-6 min-[1280px]:grid min-[1280px]:grid-cols-[360px_minmax(0,1fr)] min-[1280px]:gap-12 min-[1280px]:items-start";
 const mediaSlot = "order-first min-[1280px]:order-none";
 const bordered = "pt-[clamp(48px,7vw,72px)] border-t border-hairline";
 
 export default function Work() {
   return (
-    <ChapterSection id="work">
+    <ChapterSection id="work" className={wideSection}>
       <Reveal>
         <SectionLabel number="02" label="Selected work" />
       </Reveal>
 
       <Reveal>
-        <article className="flex flex-col gap-6 mb-[clamp(72px,10vw,112px)]">
+        <nav aria-label="Projects" className="mb-[clamp(72px,10vw,112px)]">
+          <ol className="m-0 p-0 list-none border-b border-hairline">
+            {PROJECTS.map((p, i) => (
+              <li key={p.id} className="border-t border-hairline">
+                <a
+                  href={`#${p.id}`}
+                  className="group grid grid-cols-[28px_minmax(0,1fr)_auto] gap-x-4 gap-y-1 items-baseline py-5 px-3 -mx-3 rounded-lg min-[860px]:grid-cols-[28px_200px_minmax(0,1fr)_210px_auto] min-[860px]:gap-x-6 transition-colors duration-200 ease-out hover:bg-surface"
+                >
+                  <span className="font-mono text-[11px] tracking-[0.1em] text-muted">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-lg leading-snug tracking-[-0.01em] text-ink group-hover:text-accent transition-colors duration-200">
+                    {p.name}
+                  </span>
+                  <span className="col-start-2 row-start-2 text-[15px] leading-normal text-muted text-pretty min-[860px]:col-start-3 min-[860px]:row-start-1">
+                    {p.summary}
+                  </span>
+                  <span className="hidden min-[860px]:block font-mono text-xs text-muted">
+                    {p.stack}
+                    <span className="block mt-1 text-[11px] tracking-[0.1em] uppercase">{p.status}</span>
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className="col-start-3 row-start-1 font-mono text-sm text-muted transition-transform duration-200 group-hover:translate-y-0.5 group-hover:text-accent min-[860px]:col-start-5"
+                  >
+                    ↓
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      </Reveal>
+
+      <Reveal>
+        <article id="tfspace" className={`flex flex-col gap-6 mb-[clamp(72px,10vw,112px)] ${bordered} ${anchor}`}>
           <div className="flex flex-col gap-3.5">
-            <div className={eyebrow}>Multi-tenant platform · Backend solo, 393 commits</div>
+            <div className={eyebrow}>Multi-tenant platform · Solo backend · Live</div>
             <h2 className={title}>TFSpace</h2>
             <p className={dek}>
               A real-estate workspace platform: companies hold spaces, spaces hold properties and
@@ -59,7 +165,7 @@ export default function Work() {
           <div className={mediaRow}>
             <div className="flex flex-col gap-4.5 max-w-[68ch]">
               <p className={bodyP}>
-                I built the backend on my own: NestJS and TypeScript over Prisma and PostgreSQL, with a
+                I built the backend on my own across 393 commits: NestJS and TypeScript over Prisma and PostgreSQL, with a
                 multi-tenant data model that gives each workspace its own subdomain. Three separate auth
                 flows (Google OAuth, phone OTP, email OTP) resolve into a single JWT session layer, with ten
                 roles of RBAC on top. Supabase handles file storage, SendGrid the transactional email, and
@@ -80,32 +186,36 @@ export default function Work() {
             </div>
           </div>
 
-          <ScreenshotFrame
-            src="/images/tfspace-space-overview.png"
-            alt="TFSpace space overview screen"
-            width={1442}
-            height={901}
-            withBar
-            caption="A space under a workspace tenant, on its own subdomain. Everything here is scoped by the tenant boundary, reached through one JWT session layer fed by three auth flows, and gated by ten roles of RBAC. 390+ commits, solo backend."
-          />
-
-          <div className="grid [grid-template-columns:repeat(auto-fit,minmax(260px,1fr))] gap-5">
-            <ScreenshotFrame
-              src="/images/tfspace-space-analytics.png"
-              sizes="(max-width: 640px) 100vw, 434px"
-              alt="TFSpace analytics panels"
-              width={1440}
-              height={902}
-              caption="Aggregates computed per space, served over the same tenant-scoped API and pushed live over Socket.io."
-            />
-            <ScreenshotFrame
-              src="/images/tfspace-property-detail.png"
-              sizes="(max-width: 640px) 100vw, 434px"
-              alt="TFSpace property detail screen"
-              width={1441}
-              height={901}
-              caption="Property records with media in Supabase storage; document actions trigger SendGrid templates."
-            />
+          <div className={mediaRow}>
+            <div className="grid [grid-template-columns:repeat(auto-fit,minmax(260px,1fr))] gap-5">
+              <ScreenshotFrame
+                src="/images/tfspace-space-analytics.png"
+                sizes="(max-width: 640px) 100vw, (max-width: 1279px) 434px, 360px"
+                alt="TFSpace analytics panels"
+                width={1440}
+                height={902}
+                caption="Aggregates computed per space, served over the same tenant-scoped API and pushed live over Socket.io."
+              />
+              <ScreenshotFrame
+                src="/images/tfspace-property-detail.png"
+                sizes="(max-width: 640px) 100vw, (max-width: 1279px) 434px, 360px"
+                alt="TFSpace property detail screen"
+                width={1441}
+                height={901}
+                caption="Property records with media in Supabase storage; document actions trigger SendGrid templates."
+              />
+            </div>
+            <div className={mediaSlot}>
+              <ScreenshotFrame
+                src="/images/tfspace-space-overview.png"
+                alt="TFSpace space overview screen"
+                width={1442}
+                height={901}
+                sizes="(max-width: 1000px) 100vw, (max-width: 1279px) 888px, 832px"
+                withBar
+                caption="One space inside a workspace, served on that workspace's own subdomain."
+              />
+            </div>
           </div>
 
           <div className={pillRow}>
@@ -124,9 +234,143 @@ export default function Work() {
       </Reveal>
 
       <Reveal>
-        <article className={`flex flex-col gap-6 mb-[clamp(72px,10vw,112px)] ${bordered}`}>
+        <article id="anti-freeze" className={`flex flex-col gap-6 mb-[clamp(72px,10vw,112px)] ${bordered} ${anchor}`}>
           <div className="flex flex-col gap-3.5">
-            <div className={eyebrow}>Liquid theme to headless commerce · Solo</div>
+            <div className={eyebrow}>macOS menu bar app · Solo · Open source</div>
+            <h2 className={title}>Anti-Freeze</h2>
+            <p className={dek}>
+              A menu bar app that warns you before an 8 GB Mac slows down, names the app causing it, and
+              offers careful fixes: it asks apps to quit normally and only ever moves files to the Trash.
+            </p>
+          </div>
+
+          <div className={mediaRow}>
+            <div className="flex flex-col gap-4.5 max-w-[68ch]">
+              <p className={bodyP}>
+                Go on Wails v3, with cgo calls into public macOS APIs for memory pressure, swap, disk and
+                per-process data, and SQLite for history. It shows one number, how much room is left, and
+                only forecasts a slowdown when a least-squares fit over the last ten minutes is confident.
+                Every threshold comes from the Mac it runs on, and after a week it adjusts to where that
+                Mac actually struggled, never becoming less cautious than the defaults.
+              </p>
+              <p className={bodyP}>
+                The fixes are deliberately careful. Before quitting an app it checks whether the app looks
+                busy, then asks it to quit normally so it can prompt you to save. Disk cleanup moves files
+                to the Trash and never deletes them. There is no network code at all, and the tests fail
+                the build if a networking package is imported. Over a ten-minute run of its own measuring
+                script, the main process averaged 0.89% of one core and peaked at 45 MB.
+              </p>
+            </div>
+            <div className={mediaSlot}>
+              <ScreenshotFrame
+                src="/images/antifreeze-dashboard.png"
+                alt="Anti-Freeze dashboard: 1.4 GB to spare, a memory and disk bar, and a 24-hour timeline with two slowdowns"
+                width={2240}
+                height={1600}
+                sizes="(max-width: 1000px) 100vw, (max-width: 1279px) 888px, 832px"
+                withBar
+                caption="The dashboard on synthetic demo data: room to spare, the memory and disk runway, and a 24-hour timeline where both slowdowns trace back to the same app."
+              />
+            </div>
+          </div>
+
+          <div className="max-w-[420px]">
+            <ScreenshotFrame
+              src="/images/antifreeze-safety.png"
+              alt="Anti-Freeze safety check: Chrome looks busy, so the default button is Keep Chrome open"
+              width={840}
+              height={676}
+              sizes="(max-width: 480px) 100vw, 420px"
+              caption="The safety check before quitting. A busy app gets “Keep it open” as the default button."
+            />
+          </div>
+
+          <div className={pillRow}>
+            {TAGS_ANTIFREEZE.map((t) => (
+              <TagPill key={t}>{t}</TagPill>
+            ))}
+          </div>
+
+          <div className={linkRow}>
+            <Link href="https://github.com/Prime-Cave/anti-freeze/releases/latest" variant="accent">
+              Download for macOS ↗
+            </Link>
+            <Link href="https://github.com/Prime-Cave/anti-freeze">github.com/Prime-Cave/anti-freeze ↗</Link>
+          </div>
+        </article>
+      </Reveal>
+
+      <Reveal>
+        <article id="the-network" className={`flex flex-col gap-6 mb-[clamp(72px,10vw,112px)] ${bordered} ${anchor}`}>
+          <div className="flex flex-col gap-3.5">
+            <div className={eyebrow}>Student social app · App and API · In development</div>
+            <h2 className={title}>The Network</h2>
+            <p className={dek}>
+              A social network for ALU students: meet people you&apos;ve crossed paths with, chat one to one
+              and in country groups, post, and find clubs, events and student ventures.
+            </p>
+          </div>
+
+          <div className={mediaRow}>
+            <div className="flex flex-col gap-4.5 max-w-[68ch]">
+              <p className={bodyP}>
+                It started as a UI-only Flutter prototype. I rebuilt it as a working app with a
+                feature-first structure and an in-memory backend, so the whole app runs offline on seeded
+                data, plus a live mode that moves each feature onto the real API one phase at a time. A
+                shared component library and generated design tokens drive eight themes, with golden tests
+                in light, dark and at 200% text size.
+              </p>
+              <p className={bodyP}>
+                The API is NestJS, Prisma and PostgreSQL, built on an earlier student-platform backend and
+                largely rewritten. Google ID tokens are checked on the server, so only @alustudent.com
+                accounts get in, and refresh tokens rotate. It has a Socket.io gateway for real-time
+                updates (the app polls for now), and posting, messaging and reports each have their own
+                rate limit. A security review ahead of the planned pilot cut production dependency
+                advisories from 214 to 26 and kept search terms and emails out of logs and error reports.
+              </p>
+              <p className={bodyP}>
+                Compass, the in-app helper, sits behind a model interface. Guardrails run before and after
+                any model, and its tools are the only way it can reach data. Until a provider is chosen, it
+                routes requests by keyword and calls the same tools.
+              </p>
+            </div>
+            <figure className="m-0 flex flex-col gap-3.5 order-first min-[1280px]:order-none">
+              <div className="grid grid-cols-3 gap-3">
+                {NETWORK_SCREENS.map((s) => (
+                  <ScreenshotFrame
+                    key={s.src}
+                    src={s.src}
+                    alt={s.alt}
+                    width={390}
+                    height={844}
+                    sizes="(max-width: 1000px) 33vw, 280px"
+                  />
+                ))}
+              </div>
+              <figcaption className={CAPTION}>
+                Home, People and Chat, from the app&apos;s golden-test screenshots with seeded demo accounts.
+              </figcaption>
+            </figure>
+          </div>
+
+          <div className={pillRow}>
+            {TAGS_NETWORK.map((t) => (
+              <TagPill key={t}>{t}</TagPill>
+            ))}
+          </div>
+
+          <div className={linkRow}>
+            <span className="font-mono text-xs tracking-[0.06em] text-muted">
+              App and API repos · private · pilot planned
+            </span>
+          </div>
+        </article>
+      </Reveal>
+
+      <Reveal>
+        <article id="elvindake" className={`flex flex-col gap-6 mb-[clamp(72px,10vw,112px)] ${bordered} ${anchor}`}>
+          <div className="flex flex-col gap-3.5">
+            <div className={eyebrow}>Headless commerce · Solo · Live</div>
             <h2 className={title}>ElvinDake Storefront</h2>
             <p className={dek}>
               I built a live fashion brand&apos;s custom Liquid theme, then moved it onto a headless stack
@@ -171,9 +415,9 @@ export default function Work() {
       </Reveal>
 
       <Reveal>
-        <article className={`flex flex-col gap-6 mb-[clamp(72px,10vw,112px)] ${bordered}`}>
+        <article id="petra-house" className={`flex flex-col gap-6 mb-[clamp(72px,10vw,112px)] ${bordered} ${anchor}`}>
           <div className="flex flex-col gap-3.5">
-            <div className={eyebrow}>Client site · Solo</div>
+            <div className={eyebrow}>Client site · Solo · Live</div>
             <h2 className={title}>Petra House Andover</h2>
             <p className={dek}>
               A live site for a church that needed its sermons, programmes and prayer requests to work as
@@ -204,9 +448,9 @@ export default function Work() {
       </Reveal>
 
       <Reveal>
-        <article className={`flex flex-col gap-6 mb-0 ${bordered}`}>
+        <article id="pixl" className={`flex flex-col gap-6 mb-0 ${bordered} ${anchor}`}>
           <div className="flex flex-col gap-3.5">
-            <div className={eyebrow}>Native desktop · Solo</div>
+            <div className={eyebrow}>Native desktop app · Solo · Open source</div>
             <h2 className={title}>PIXL</h2>
             <p className={dek}>
               A pixel-art editor with no web platform underneath it. The canvas had to be drawn by hand.

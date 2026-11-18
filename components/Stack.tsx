@@ -3,9 +3,9 @@ import SectionLabel from "./SectionLabel";
 import ChapterSection from "./ui/ChapterSection";
 
 const ROWS = [
-  { label: "Languages", value: "TypeScript · JavaScript · Python · Go · Rust" },
-  { label: "Frameworks", value: "NestJS · Next.js · React · Express · Shopify Hydrogen · Go + Fyne" },
-  { label: "Data", value: "PostgreSQL · Prisma · MongoDB · GraphQL" },
+  { label: "Languages", value: "TypeScript · JavaScript · Dart · Python · Go · Rust" },
+  { label: "Frameworks", value: "NestJS · Next.js · React · Flutter · Express · Shopify Hydrogen · Go + Fyne · Wails" },
+  { label: "Data", value: "PostgreSQL · Prisma · SQLite · MongoDB · GraphQL" },
   { label: "Infrastructure", value: "Docker · Kubernetes · Railway · Shopify Oxygen · Supabase" },
 ];
 

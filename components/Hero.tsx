@@ -43,20 +43,28 @@ export default function Hero() {
         I learn fast.
       </p>
 
-      <div className="relative z-[1] flex flex-wrap items-center gap-x-5 gap-y-3 animate-hero-in [animation-delay:280ms]">
-        <span className="inline-flex items-center gap-2 border border-hairline rounded-full px-3.5 py-1.5 font-mono text-[11px] tracking-[0.12em] uppercase text-muted">
-          <span className="relative w-1.5 h-1.5 rounded-full bg-accent">
-            <span className="hud-loop absolute inset-0 rounded-full bg-accent animate-hud-ping" />
+      <div className="relative z-[1] flex flex-col gap-6 animate-hero-in [animation-delay:280ms]">
+        <div className="flex flex-wrap items-center gap-3">
+          <Link href="/Tomisin-Akinfemiwa-CV.pdf" target="_blank" rel="noopener noreferrer" variant="button">
+            View CV ↗
+          </Link>
+          <Link href="mailto:Tomisin.Akinfemiwa@gmail.com" variant="ghost">
+            Email me
+          </Link>
+        </div>
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-4">
+          <span className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.12em] uppercase text-muted">
+            <span className="relative w-1.5 h-1.5 rounded-full bg-accent">
+              <span className="hud-loop absolute inset-0 rounded-full bg-accent animate-hud-ping" />
+            </span>
+            Open to work
           </span>
-          Open to work
-        </span>
-        <Link href="/Tomisin-Akinfemiwa-CV.pdf" target="_blank" rel="noopener noreferrer" variant="accent">
-          View CV ↗
-        </Link>
-        <Link href="https://github.com/Prime-Cave">GitHub</Link>
-        <Link href="https://www.linkedin.com/in/tomisin-akinfemiwa">LinkedIn</Link>
-        <Link href="https://x.com/Ak_Tomisin">X</Link>
-        <Link href="https://github.com/Prime-Cave/Codewars">Codewars</Link>
+          <span aria-hidden="true" className="w-4 h-px bg-hairline" />
+          <Link href="https://github.com/Prime-Cave">GitHub</Link>
+          <Link href="https://www.linkedin.com/in/tomisin-akinfemiwa">LinkedIn</Link>
+          <Link href="https://x.com/Ak_Tomisin">X / Twitter</Link>
+          <Link href="https://github.com/Prime-Cave/Codewars">Codewars</Link>
+        </div>
       </div>
     </section>
   );

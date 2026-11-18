@@ -37,6 +37,14 @@
   ::selection {
     @apply bg-accent text-bg;
   }
+  /* Keyboard focus: a clear accent outline (mouse clicks don't show it). */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+  a:where(:not([class*="rounded"])):focus-visible {
+    border-radius: 3px;
+  }
   /* The loop videos have no controls: a refused autoplay should show the poster. */
   video::-webkit-media-controls-start-playback-button,
   video::-webkit-media-controls-overlay-play-button {

@@ -1,5 +1,8 @@
 import Image from "next/image";
 
+// Shared caption style for screenshots, videos and figure groups.
+export const CAPTION = "font-mono text-[13px] leading-[1.6] tracking-[0.01em] text-muted max-w-[70ch]";
+
 export default function ScreenshotFrame({
   src,
   alt,
@@ -11,7 +14,7 @@ export default function ScreenshotFrame({
 }: {
   src: string;
   alt: string;
-  caption: string;
+  caption?: string;
   width: number;
   height: number;
   sizes?: string;
@@ -29,9 +32,11 @@ export default function ScreenshotFrame({
         )}
         <Image src={src} alt={alt} width={width} height={height} sizes={sizes} className="block w-full h-auto rounded-[7px]" />
       </div>
-      <figcaption className="font-mono text-[11px] leading-[1.6] tracking-[0.04em] text-muted max-w-[70ch]">
-        {caption}
-      </figcaption>
+      {caption && (
+        <figcaption className={CAPTION}>
+          {caption}
+        </figcaption>
+      )}
     </figure>
   );
 }

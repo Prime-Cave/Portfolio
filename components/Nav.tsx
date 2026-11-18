@@ -81,7 +81,7 @@ export default function Nav() {
                 data-nav={s.id}
                 data-active={active === s.id}
                 href={`#${s.id}`}
-                className="font-mono text-[11px] tracking-[0.14em] uppercase py-1 text-muted transition-colors duration-200 ease-out hover:text-ink data-[active=true]:text-ink"
+                className="relative after:absolute after:-inset-x-1.5 after:-inset-y-2.5 after:content-[''] font-mono text-[11px] tracking-[0.14em] uppercase py-1 text-muted transition-colors duration-200 ease-out hover:text-ink data-[active=true]:text-ink"
               >
                 {s.label}
               </a>

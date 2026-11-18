@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { CAPTION } from "./ScreenshotFrame";
 
 const REDUCED_MOTION = "(prefers-reduced-motion: reduce)";
 
@@ -124,7 +125,7 @@ export default function LoopVideo({
           )}
         </video>
       </div>
-      <figcaption className="font-mono text-[11px] leading-[1.6] tracking-[0.04em] text-muted max-w-[70ch]">
+      <figcaption className={CAPTION}>
         {caption}
       </figcaption>
     </figure>

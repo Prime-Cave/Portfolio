@@ -93,12 +93,12 @@ const PROJECTS = [
 // Articles get an id for the index; scroll-mt keeps the title clear of the fixed nav.
 const anchor = "scroll-mt-[72px]";
 
-const eyebrow = "font-mono text-[11px] tracking-[0.16em] uppercase text-muted";
-const title = "text-[clamp(26px,4vw,40px)] leading-[1.1] tracking-[-0.025em] font-medium m-0";
-const dek = "text-[clamp(17px,2vw,19px)] leading-[1.5] text-ink m-0 max-w-[64ch] text-pretty";
-const bodyP = "text-base leading-[1.66] text-muted m-0 text-pretty";
+const eyebrow = "text-[15px] text-muted";
+const title = "text-[clamp(32px,5vw,52px)] leading-[1.04] tracking-[-0.035em] font-medium m-0";
+const dek = "text-[clamp(19px,2.2vw,24px)] leading-[1.45] tracking-[-0.015em] text-ink m-0 max-w-[44ch] text-pretty";
+const bodyP = "text-[17px] leading-[1.7] text-muted m-0 text-pretty";
 const pillRow = "flex flex-wrap gap-2";
-const linkRow = "flex flex-wrap gap-5 items-center";
+const linkRow = "flex flex-wrap gap-x-8 gap-y-4 items-center";
 // From 1280px the section outgrows the 888px column by the same amount on both
 // sides, so the video can sit right of the copy and stay legible while the whole
 // section remains centred on the page. Below that it stays stacked.
@@ -107,40 +107,40 @@ const wideSection =
 const mediaRow =
   "flex flex-col gap-6 min-[1280px]:grid min-[1280px]:grid-cols-[360px_minmax(0,1fr)] min-[1280px]:gap-12 min-[1280px]:items-start";
 const mediaSlot = "order-first min-[1280px]:order-none";
-const bordered = "pt-[clamp(48px,7vw,72px)] border-t border-hairline";
+const bordered = "pt-[clamp(64px,9vw,96px)] border-t border-hairline";
 
 export default function Work() {
   return (
     <ChapterSection id="work" className={wideSection}>
       <Reveal>
-        <SectionLabel number="02" label="Selected work" />
+        <SectionLabel label="Selected work" title="Things I’ve built, and how." />
       </Reveal>
 
       <Reveal>
-        <nav aria-label="Projects" className="mb-[clamp(72px,10vw,112px)]">
+        <nav aria-label="Projects" className="mb-[clamp(96px,14vw,160px)]">
           <ol className="m-0 p-0 list-none border-b border-hairline">
             {PROJECTS.map((p, i) => (
               <li key={p.id} className="border-t border-hairline">
                 <a
                   href={`#${p.id}`}
-                  className="group grid grid-cols-[28px_minmax(0,1fr)_auto] gap-x-4 gap-y-1 items-baseline py-5 px-3 -mx-3 rounded-lg min-[860px]:grid-cols-[28px_200px_minmax(0,1fr)_210px_auto] min-[860px]:gap-x-6 transition-colors duration-200 ease-out hover:bg-surface"
+                  className="group grid grid-cols-[28px_minmax(0,1fr)_auto] gap-x-4 gap-y-1 items-baseline py-6 px-4 -mx-4 rounded-xl min-[860px]:grid-cols-[28px_200px_minmax(0,1fr)_210px_auto] min-[860px]:gap-x-6 transition-colors duration-200 ease-out hover:bg-surface"
                 >
-                  <span className="font-mono text-[11px] tracking-[0.1em] text-muted">
+                  <span className="text-[14px] tabular-nums text-muted">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="text-lg leading-snug tracking-[-0.01em] text-ink group-hover:text-accent transition-colors duration-200">
+                  <span className="text-[clamp(18px,2vw,21px)] leading-snug tracking-[-0.015em] font-medium text-ink">
                     {p.name}
                   </span>
                   <span className="col-start-2 row-start-2 text-[15px] leading-normal text-muted text-pretty min-[860px]:col-start-3 min-[860px]:row-start-1">
                     {p.summary}
                   </span>
-                  <span className="hidden min-[860px]:block font-mono text-xs text-muted">
+                  <span className="hidden min-[860px]:block text-[14px] text-muted">
                     {p.stack}
-                    <span className="block mt-1 text-[11px] tracking-[0.1em] uppercase">{p.status}</span>
+                    <span className="block mt-1 text-ink/70">{p.status}</span>
                   </span>
                   <span
                     aria-hidden="true"
-                    className="col-start-3 row-start-1 font-mono text-sm text-muted transition-transform duration-200 group-hover:translate-y-0.5 group-hover:text-accent min-[860px]:col-start-5"
+                    className="col-start-3 row-start-1 text-[15px] text-muted transition-[transform,color] duration-200 ease-out group-hover:translate-y-0.5 group-hover:text-ink min-[860px]:col-start-5"
                   >
                     ↓
                   </span>
@@ -152,10 +152,10 @@ export default function Work() {
       </Reveal>
 
       <Reveal>
-        <article id="tfspace" className={`flex flex-col gap-6 mb-[clamp(72px,10vw,112px)] ${bordered} ${anchor}`}>
-          <div className="flex flex-col gap-3.5">
+        <article id="tfspace" className={`flex flex-col gap-8 mb-[clamp(96px,14vw,160px)] ${bordered} ${anchor}`}>
+          <div className="flex flex-col gap-4">
             <div className={eyebrow}>Multi-tenant platform · Solo backend · Live</div>
-            <h2 className={title}>TFSpace</h2>
+            <h3 className={title}>TFSpace</h3>
             <p className={dek}>
               A real-estate workspace platform: companies hold spaces, spaces hold properties and
               timelines, and every tenant needs its own boundary.
@@ -228,16 +228,16 @@ export default function Work() {
             <Link href="https://tfspaces.com" variant="accent">
               tfspaces.com ↗
             </Link>
-            <span className="font-mono text-xs tracking-[0.06em] text-muted">Backend repo · private</span>
+            <span className="text-[15px] text-muted">Backend repo · private</span>
           </div>
         </article>
       </Reveal>
 
       <Reveal>
-        <article id="anti-freeze" className={`flex flex-col gap-6 mb-[clamp(72px,10vw,112px)] ${bordered} ${anchor}`}>
-          <div className="flex flex-col gap-3.5">
+        <article id="anti-freeze" className={`flex flex-col gap-8 mb-[clamp(96px,14vw,160px)] ${bordered} ${anchor}`}>
+          <div className="flex flex-col gap-4">
             <div className={eyebrow}>macOS menu bar app · Solo · Open source</div>
-            <h2 className={title}>Anti-Freeze</h2>
+            <h3 className={title}>Anti-Freeze</h3>
             <p className={dek}>
               A menu bar app that warns you before an 8 GB Mac slows down, names the app causing it, and
               offers careful fixes: it asks apps to quit normally and only ever moves files to the Trash.
@@ -301,10 +301,10 @@ export default function Work() {
       </Reveal>
 
       <Reveal>
-        <article id="the-network" className={`flex flex-col gap-6 mb-[clamp(72px,10vw,112px)] ${bordered} ${anchor}`}>
-          <div className="flex flex-col gap-3.5">
+        <article id="the-network" className={`flex flex-col gap-8 mb-[clamp(96px,14vw,160px)] ${bordered} ${anchor}`}>
+          <div className="flex flex-col gap-4">
             <div className={eyebrow}>Student social app · App and API · In development</div>
-            <h2 className={title}>The Network</h2>
+            <h3 className={title}>The Network</h3>
             <p className={dek}>
               A social network for ALU students: meet people you&apos;ve crossed paths with, chat one to one
               and in country groups, post, and find clubs, events and student ventures.
@@ -360,7 +360,7 @@ export default function Work() {
           </div>
 
           <div className={linkRow}>
-            <span className="font-mono text-xs tracking-[0.06em] text-muted">
+            <span className="text-[15px] text-muted">
               App and API repos · private · pilot planned
             </span>
           </div>
@@ -368,10 +368,10 @@ export default function Work() {
       </Reveal>
 
       <Reveal>
-        <article id="elvindake" className={`flex flex-col gap-6 mb-[clamp(72px,10vw,112px)] ${bordered} ${anchor}`}>
-          <div className="flex flex-col gap-3.5">
+        <article id="elvindake" className={`flex flex-col gap-8 mb-[clamp(96px,14vw,160px)] ${bordered} ${anchor}`}>
+          <div className="flex flex-col gap-4">
             <div className={eyebrow}>Headless commerce · Solo · Live</div>
-            <h2 className={title}>ElvinDake Storefront</h2>
+            <h3 className={title}>ElvinDake Storefront</h3>
             <p className={dek}>
               I built a live fashion brand&apos;s custom Liquid theme, then moved it onto a headless stack
               without the storefront changing under its customers.
@@ -415,10 +415,10 @@ export default function Work() {
       </Reveal>
 
       <Reveal>
-        <article id="petra-house" className={`flex flex-col gap-6 mb-[clamp(72px,10vw,112px)] ${bordered} ${anchor}`}>
-          <div className="flex flex-col gap-3.5">
+        <article id="petra-house" className={`flex flex-col gap-8 mb-[clamp(96px,14vw,160px)] ${bordered} ${anchor}`}>
+          <div className="flex flex-col gap-4">
             <div className={eyebrow}>Client site · Solo · Live</div>
-            <h2 className={title}>Petra House Andover</h2>
+            <h3 className={title}>Petra House Andover</h3>
             <p className={dek}>
               A live site for a church that needed its sermons, programmes and prayer requests to work as
               one thing, not three.
@@ -448,10 +448,10 @@ export default function Work() {
       </Reveal>
 
       <Reveal>
-        <article id="pixl" className={`flex flex-col gap-6 mb-0 ${bordered} ${anchor}`}>
-          <div className="flex flex-col gap-3.5">
+        <article id="pixl" className={`flex flex-col gap-8 mb-0 ${bordered} ${anchor}`}>
+          <div className="flex flex-col gap-4">
             <div className={eyebrow}>Native desktop app · Solo · Open source</div>
-            <h2 className={title}>PIXL</h2>
+            <h3 className={title}>PIXL</h3>
             <p className={dek}>
               A pixel-art editor with no web platform underneath it. The canvas had to be drawn by hand.
             </p>
@@ -492,8 +492,8 @@ export default function Work() {
 
       <Reveal>
         <div className="mt-[clamp(48px,7vw,72px)] pt-[clamp(32px,5vw,48px)] border-t border-hairline flex flex-wrap gap-x-10 gap-y-4 items-baseline">
-          <div className="font-mono text-[11px] tracking-[0.16em] uppercase text-muted min-w-[120px]">Also</div>
-          <p className="text-base leading-[1.66] text-muted m-0 max-w-[60ch] text-pretty">
+          <div className="text-[15px] text-muted min-w-[120px]">Also</div>
+          <p className="text-[17px] leading-[1.7] text-muted m-0 max-w-[60ch] text-pretty">
             <Link href="https://github.com/Prime-Cave/apidesignbp" variant="inline">
               apidesignbp
             </Link>{" "}

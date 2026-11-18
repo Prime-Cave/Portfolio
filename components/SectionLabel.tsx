@@ -1,15 +1,17 @@
+// Section opener: a small plain label over one large, confident line.
 export default function SectionLabel({
-  number,
   label,
+  title,
 }: {
-  number: string;
   label: string;
+  title: string;
 }) {
   return (
-    <div className="flex items-center gap-3 font-mono text-[11px] tracking-[0.2em] uppercase text-muted mb-[clamp(36px,6vw,56px)]">
-      <span>{number}</span>
-      <span className="w-5 h-px bg-hairline" />
-      <span>{label}</span>
-    </div>
+    <header className="mb-[clamp(48px,8vw,88px)]">
+      <p className="text-[15px] text-muted m-0 mb-4">{label}</p>
+      <h2 className="text-[clamp(36px,6vw,64px)] leading-[1.02] tracking-[-0.04em] font-medium text-ink m-0 max-w-[16ch] text-balance">
+        {title}
+      </h2>
+    </header>
   );
 }

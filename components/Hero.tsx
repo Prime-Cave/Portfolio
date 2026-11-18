@@ -29,10 +29,10 @@ export default function Hero() {
   return (
     <section id="hero" className={`${s.root} pt-[clamp(128px,22vh,208px)]`}>
       <p
-        className={`${s.fade} flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[15px] text-muted m-0 mb-8`}
+        className={`${s.fade} flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[0.9375rem] text-muted m-0 mb-8`}
         style={delay(0)}
       >
-        <span className="whitespace-nowrap">Tomisin Akinfemiwa · Software engineer</span>
+        <span>Tomisin Akinfemiwa · Software engineer</span>
         <span className="whitespace-nowrap inline-flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-accent" aria-hidden="true" />
           Open to work
@@ -40,17 +40,17 @@ export default function Hero() {
       </p>
 
       <h1
-        className={`${s.enter} ${s.lead} text-[clamp(44px,8.4vw,96px)] leading-[0.98] tracking-[-0.045em] font-medium text-ink m-0 max-w-[13ch] text-balance`}
+        className={`${s.enter} ${s.lead} text-[clamp(2.75rem,8.4vw,6rem)] leading-[0.98] tracking-[-0.045em] font-medium text-ink m-0 max-w-[13ch] text-balance`}
         style={delay(0)}
       >
         I solve hard problems and build the systems around them.
       </h1>
 
       <p
-        className={`${s.enter} ${s.support} text-[clamp(18px,1.9vw,22px)] leading-[1.5] text-muted m-0 mt-9 max-w-[46ch] text-pretty`}
+        className={`${s.enter} ${s.support} text-[clamp(1.125rem,1.9vw,1.375rem)] leading-[1.5] text-muted m-0 mt-9 max-w-[46ch] text-pretty`}
         style={delay(120)}
       >
-        Backend platforms, native apps and the tools in between. I like a good challenge, and I learn fast.
+        Backend platforms in NestJS and PostgreSQL, native apps in Go and Flutter, and the tools in between. I learn fast.
       </p>
 
       <div className={`${s.enter} ${s.cta} flex flex-wrap items-center gap-x-8 gap-y-4 mt-12`} style={delay(200)}>
@@ -58,13 +58,13 @@ export default function Hero() {
           href="/Tomisin-Akinfemiwa-CV.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className={`${s.button} inline-flex items-center h-12 px-6 rounded-full bg-ink text-bg text-[15px] font-medium hover:bg-white`}
+          className={`${s.button} inline-flex items-center h-12 px-6 rounded-full bg-ink text-bg text-[0.9375rem] font-medium hover:bg-white`}
         >
           View CV
         </a>
         <a
           href="mailto:Tomisin.Akinfemiwa@gmail.com"
-          className={`${s.textLink} inline-flex items-center gap-1.5 h-12 text-[15px] text-ink`}
+          className={`${s.textLink} inline-flex items-center gap-1.5 h-12 text-[0.9375rem] text-ink`}
         >
           Email me <span className={s.arrow} aria-hidden="true">→</span>
         </a>
@@ -82,7 +82,7 @@ export default function Hero() {
           </picture>
         </div>
         <figcaption
-          className={`${s.fade} flex flex-wrap justify-between gap-x-6 gap-y-1 mt-5 text-[15px] text-muted`}
+          className={`${s.fade} flex flex-wrap justify-between gap-x-6 gap-y-1 mt-5 text-[0.9375rem] text-muted`}
           style={delay(700)}
         >
           <span>

@@ -5,7 +5,7 @@ import "./globals.css";
 const geist = Geist({
   variable: "--font-geist",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "500"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -16,7 +16,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 const title = "Tomisin Akinfemiwa · Software Engineer";
 const description =
-  "Algorithmic problem-solving, systems architecture, and shipped products.";
+  "Software engineer building backend platforms (NestJS, PostgreSQL), native apps (Go, Flutter) and headless storefronts. Selected work: TFSpace, Anti-Freeze, The Network.";
 
 // Set NEXT_PUBLIC_SITE_URL once the site has a real domain, so OG/Twitter
 // image URLs resolve correctly. Falls back to the host's own env vars

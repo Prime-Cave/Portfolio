@@ -10,17 +10,17 @@ const hitArea = "relative after:absolute after:-inset-x-1.5 after:-inset-y-3 aft
 
 // Shared pill shape, matching the hero's buttons. A slight press on click.
 const pill =
-  "inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full text-[15px] font-medium active:scale-[0.97]";
+  "inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full text-[0.9375rem] font-medium active:scale-[0.97]";
 
 const VARIANT_CLASSES: Record<Variant, string> = {
   // Muted secondary link that brightens on hover.
-  quiet: `${base} ${hitArea} text-[15px] text-muted hover:text-ink`,
+  quiet: `${base} ${hitArea} text-[0.9375rem] text-muted hover:text-ink`,
   // Primary text link (project links).
-  accent: `${base} ${hitArea} text-[15px] text-ink border-b border-accent pb-0.5 hover:text-accent-hover`,
+  accent: `${base} ${hitArea} text-[0.9375rem] text-ink border-b border-accent pb-0.5 hover:text-accent-hover`,
   // Link inline within a paragraph of body text.
   inline: `${base} text-ink border-b border-hairline hover:border-accent`,
   // Contact-section link list.
-  contact: `${base} ${hitArea} text-[15px] text-muted hover:text-ink`,
+  contact: `${base} ${hitArea} text-[0.9375rem] text-muted hover:text-ink`,
   // Primary button: filled.
   button: `${base} ${pill} bg-ink text-bg hover:bg-white`,
   // Secondary button: outlined.

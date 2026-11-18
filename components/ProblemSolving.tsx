@@ -19,7 +19,7 @@ export default function ProblemSolving() {
       </Reveal>
       <Reveal>
         <div className="flex flex-col gap-[clamp(48px,7vw,72px)]">
-          <p className="text-[clamp(22px,2.8vw,30px)] leading-[1.4] tracking-[-0.02em] m-0 text-ink text-pretty max-w-[40ch]">
+          <p className="text-[clamp(1.375rem,2.8vw,1.875rem)] leading-[1.4] tracking-[-0.02em] m-0 text-ink text-pretty max-w-[40ch]">
             A standing practice since October 2024, and still running. Each stretch of it is aimed at a
             weakness I can name, so the numbers below are a checkpoint rather than a finish line.
           </p>
@@ -30,7 +30,7 @@ export default function ProblemSolving() {
             ))}
           </div>
 
-          <p className="text-[17px] leading-[1.7] m-0 text-muted text-pretty max-w-[62ch]">
+          <p className="text-[1.0625rem] leading-[1.7] m-0 text-muted text-pretty max-w-[62ch]">
             Mid-table and moving up, which is the honest read. What I take from it is compounding: harder
             kyu every few months, and re-solving a familiar problem shape in a new language is the fastest
             way I know to learn that language. The count keeps going up because the habit has not stopped.

@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 // Shared caption style for screenshots, videos and figure groups.
-export const CAPTION = "text-[14px] leading-[1.55] text-muted max-w-[64ch] text-pretty";
+export const CAPTION = "text-[0.875rem] leading-[1.55] text-muted max-w-[64ch] text-pretty";
 
 export default function ScreenshotFrame({
   src,

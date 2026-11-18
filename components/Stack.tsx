@@ -22,10 +22,10 @@ export default function Stack() {
               key={r.label}
               className="flex flex-wrap gap-x-10 gap-y-2 py-7 border-t border-hairline"
             >
-              <div className="text-[15px] text-muted min-w-[180px] pt-0.5">
+              <div className="text-[0.9375rem] text-muted min-w-[180px] pt-0.5">
                 {r.label}
               </div>
-              <div className="text-[clamp(17px,1.9vw,20px)] leading-[1.6] tracking-[-0.01em] text-ink max-w-[48ch]">{r.value}</div>
+              <div className="text-[clamp(1.0625rem,1.9vw,1.25rem)] leading-[1.6] tracking-[-0.01em] text-ink max-w-[48ch]">{r.value}</div>
             </div>
           ))}
         </div>

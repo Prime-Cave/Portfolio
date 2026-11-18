@@ -13,8 +13,8 @@ export default function Contact() {
   return (
     <ChapterSection id="contact" className="!pb-[clamp(96px,12vw,144px)]">
       <Reveal>
-        <p className="text-[15px] text-muted m-0 mb-4">Contact</p>
-        <h2 className="text-[clamp(44px,8.4vw,96px)] leading-[0.98] tracking-[-0.045em] font-medium text-ink m-0 max-w-[12ch] text-balance">
+        <p className="text-[0.9375rem] text-muted m-0 mb-4">Contact</p>
+        <h2 className="text-[clamp(2.75rem,8.4vw,6rem)] leading-[0.98] tracking-[-0.045em] font-medium text-ink m-0 max-w-[12ch] text-balance">
           Open to work. Happy to talk about the hard part.
         </h2>
         <div className="flex flex-wrap items-center gap-x-8 gap-y-4 mt-12">

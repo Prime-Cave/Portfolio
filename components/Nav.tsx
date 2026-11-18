@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import LogoMark from "./ui/LogoMark";
 
 const SECTIONS = [
-  { id: "about", label: "About" },
   { id: "work", label: "Work" },
+  { id: "about", label: "About" },
   { id: "problem", label: "Problem-solving" },
   { id: "stack", label: "Stack" },
   { id: "contact", label: "Contact" },
@@ -13,8 +13,8 @@ const SECTIONS = [
 
 const NAV_LABELS: Record<string, string> = {
   hero: "Intro",
-  about: "About",
   work: "Work",
+  about: "About",
   problem: "Problem-solving",
   stack: "Stack",
   contact: "Contact",
@@ -27,7 +27,9 @@ export default function Nav() {
   const linksRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const ids = SECTIONS.map((s) => s.id);
+    // Page order. The write-ups ("projects") sit after About but belong to Work.
+    const ids = ["work", "about", "projects", "problem", "stack", "contact"];
+    const navId = (id: string) => (id === "projects" ? "work" : id);
     const onResize = () => {
       const w = document.documentElement.clientWidth || window.innerWidth;
       setWide(w >= 760);
@@ -41,7 +43,7 @@ export default function Nav() {
         let cur = "hero";
         for (const id of ids) {
           const el = document.getElementById(id);
-          if (el && el.getBoundingClientRect().top <= line) cur = id;
+          if (el && el.getBoundingClientRect().top <= line) cur = navId(id);
         }
         setActive((prev) => (prev !== cur ? cur : prev));
       });
@@ -81,7 +83,7 @@ export default function Nav() {
                 data-nav={s.id}
                 data-active={active === s.id}
                 href={`#${s.id}`}
-                className="relative after:absolute after:-inset-x-1.5 after:-inset-y-2.5 after:content-[''] text-[14px] py-1 text-muted transition-colors duration-200 ease-out hover:text-ink data-[active=true]:text-ink"
+                className="relative after:absolute after:-inset-x-1.5 after:-inset-y-2.5 after:content-[''] text-[0.875rem] py-1 text-muted transition-colors duration-200 ease-out hover:text-ink data-[active=true]:text-ink"
               >
                 {s.label}
               </a>
@@ -96,7 +98,7 @@ export default function Nav() {
             />
           </div>
         ) : (
-          <span className="text-[14px] text-muted">
+          <span className="text-[0.875rem] text-muted">
             {NAV_LABELS[active] ?? ""}
           </span>
         )}

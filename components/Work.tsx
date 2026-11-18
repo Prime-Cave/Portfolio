@@ -93,10 +93,10 @@ const PROJECTS = [
 // Articles get an id for the index; scroll-mt keeps the title clear of the fixed nav.
 const anchor = "scroll-mt-[72px]";
 
-const eyebrow = "text-[15px] text-muted";
-const title = "text-[clamp(32px,5vw,52px)] leading-[1.04] tracking-[-0.035em] font-medium m-0";
-const dek = "text-[clamp(19px,2.2vw,24px)] leading-[1.45] tracking-[-0.015em] text-ink m-0 max-w-[44ch] text-pretty";
-const bodyP = "text-[17px] leading-[1.7] text-muted m-0 text-pretty";
+const eyebrow = "text-[0.9375rem] text-muted";
+const title = "text-[clamp(2rem,5vw,3.25rem)] leading-[1.04] tracking-[-0.035em] font-medium m-0";
+const dek = "text-[clamp(1.1875rem,2.2vw,1.5rem)] leading-[1.45] tracking-[-0.015em] text-ink m-0 max-w-[44ch] text-pretty";
+const bodyP = "text-[1.0625rem] leading-[1.7] text-muted m-0 text-pretty";
 const pillRow = "flex flex-wrap gap-2";
 const linkRow = "flex flex-wrap gap-x-8 gap-y-4 items-center";
 // From 1280px the section outgrows the 888px column by the same amount on both
@@ -109,7 +109,8 @@ const mediaRow =
 const mediaSlot = "order-first min-[1280px]:order-none";
 const bordered = "pt-[clamp(64px,9vw,96px)] border-t border-hairline";
 
-export default function Work() {
+// The table near the top of the page. Rows jump down to the write-ups below About.
+export function WorkIndex() {
   return (
     <ChapterSection id="work" className={wideSection}>
       <Reveal>
@@ -117,7 +118,7 @@ export default function Work() {
       </Reveal>
 
       <Reveal>
-        <nav aria-label="Projects" className="mb-[clamp(96px,14vw,160px)]">
+        <nav aria-label="Projects">
           <ol className="m-0 p-0 list-none border-b border-hairline">
             {PROJECTS.map((p, i) => (
               <li key={p.id} className="border-t border-hairline">
@@ -125,22 +126,22 @@ export default function Work() {
                   href={`#${p.id}`}
                   className="group grid grid-cols-[28px_minmax(0,1fr)_auto] gap-x-4 gap-y-1 items-baseline py-6 px-4 -mx-4 rounded-xl min-[860px]:grid-cols-[28px_200px_minmax(0,1fr)_210px_auto] min-[860px]:gap-x-6 transition-colors duration-200 ease-out hover:bg-surface"
                 >
-                  <span className="text-[14px] tabular-nums text-muted">
+                  <span className="text-[0.875rem] tabular-nums text-muted">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="text-[clamp(18px,2vw,21px)] leading-snug tracking-[-0.015em] font-medium text-ink">
+                  <span className="text-[clamp(1.125rem,2vw,1.3125rem)] leading-snug tracking-[-0.015em] font-medium text-ink">
                     {p.name}
                   </span>
-                  <span className="col-start-2 row-start-2 text-[15px] leading-normal text-muted text-pretty min-[860px]:col-start-3 min-[860px]:row-start-1">
+                  <span className="col-start-2 row-start-2 text-[0.9375rem] leading-normal text-muted text-pretty min-[860px]:col-start-3 min-[860px]:row-start-1">
                     {p.summary}
                   </span>
-                  <span className="hidden min-[860px]:block text-[14px] text-muted">
+                  <span className="hidden min-[860px]:block text-[0.875rem] text-muted">
                     {p.stack}
                     <span className="block mt-1 text-ink/70">{p.status}</span>
                   </span>
                   <span
                     aria-hidden="true"
-                    className="col-start-3 row-start-1 text-[15px] text-muted transition-[transform,color] duration-200 ease-out group-hover:translate-y-0.5 group-hover:text-ink min-[860px]:col-start-5"
+                    className="col-start-3 row-start-1 text-[0.9375rem] text-muted transition-[transform,color] duration-200 ease-out group-hover:translate-y-0.5 group-hover:text-ink min-[860px]:col-start-5"
                   >
                     ↓
                   </span>
@@ -149,6 +150,18 @@ export default function Work() {
             ))}
           </ol>
         </nav>
+      </Reveal>
+
+    </ChapterSection>
+  );
+}
+
+// The full write-ups, after About. Each article id matches a row in WorkIndex.
+export default function Work() {
+  return (
+    <ChapterSection id="projects" className={wideSection}>
+      <Reveal>
+        <SectionLabel label="Project write-ups" title="How each one was built." />
       </Reveal>
 
       <Reveal>
@@ -213,7 +226,7 @@ export default function Work() {
                 height={901}
                 sizes="(max-width: 1000px) 100vw, (max-width: 1279px) 888px, 832px"
                 withBar
-                caption="One space inside a workspace, served on that workspace's own subdomain."
+                caption="One space inside a workspace, served on that workspace’s own subdomain."
               />
             </div>
           </div>
@@ -228,7 +241,7 @@ export default function Work() {
             <Link href="https://tfspaces.com" variant="accent">
               tfspaces.com ↗
             </Link>
-            <span className="text-[15px] text-muted">Backend repo · private</span>
+            <span className="text-[0.9375rem] text-muted">Backend repo · private</span>
           </div>
         </article>
       </Reveal>
@@ -306,7 +319,7 @@ export default function Work() {
             <div className={eyebrow}>Student social app · App and API · In development</div>
             <h3 className={title}>The Network</h3>
             <p className={dek}>
-              A social network for ALU students: meet people you&apos;ve crossed paths with, chat one to one
+              A social network for ALU students: meet people you’ve crossed paths with, chat one to one
               and in country groups, post, and find clubs, events and student ventures.
             </p>
           </div>
@@ -348,7 +361,7 @@ export default function Work() {
                 ))}
               </div>
               <figcaption className={CAPTION}>
-                Home, People and Chat, from the app&apos;s golden-test screenshots with seeded demo accounts.
+                Home, People and Chat, from the app’s golden-test screenshots with seeded demo accounts.
               </figcaption>
             </figure>
           </div>
@@ -360,7 +373,7 @@ export default function Work() {
           </div>
 
           <div className={linkRow}>
-            <span className="text-[15px] text-muted">
+            <span className="text-[0.9375rem] text-muted">
               App and API repos · private · pilot planned
             </span>
           </div>
@@ -373,7 +386,7 @@ export default function Work() {
             <div className={eyebrow}>Headless commerce · Solo · Live</div>
             <h3 className={title}>ElvinDake Storefront</h3>
             <p className={dek}>
-              I built a live fashion brand&apos;s custom Liquid theme, then moved it onto a headless stack
+              I built a live fashion brand’s custom Liquid theme, then moved it onto a headless stack
               without the storefront changing under its customers.
             </p>
           </div>
@@ -420,8 +433,8 @@ export default function Work() {
             <div className={eyebrow}>Client site · Solo · Live</div>
             <h3 className={title}>Petra House Andover</h3>
             <p className={dek}>
-              A live site for a church that needed its sermons, programmes and prayer requests to work as
-              one thing, not three.
+              A live site for a church that needed its sermons, programmes and prayer requests in one
+              place.
             </p>
           </div>
 
@@ -461,8 +474,8 @@ export default function Work() {
             <div className="flex flex-col gap-6">
               <p className={`${bodyP} max-w-[68ch]`}>
                 Go and Fyne, with the canvas renderer written by hand in{" "}
-                <span className="font-mono text-sm text-ink">pxcanvasrenderer.go</span>, mouse input handled
-                separately in <span className="font-mono text-sm text-ink">mouse.go</span>, and brush behaviour
+                <span className="font-mono text-sm text-ink [overflow-wrap:anywhere]">pxcanvasrenderer.go</span>, mouse input handled
+                separately in <span className="font-mono text-sm text-ink [overflow-wrap:anywhere]">mouse.go</span>, and brush behaviour
                 in its own package. Rendering, input and UI stay apart, which is the whole reason the thing
                 stayed editable.
               </p>
@@ -492,8 +505,8 @@ export default function Work() {
 
       <Reveal>
         <div className="mt-[clamp(48px,7vw,72px)] pt-[clamp(32px,5vw,48px)] border-t border-hairline flex flex-wrap gap-x-10 gap-y-4 items-baseline">
-          <div className="text-[15px] text-muted min-w-[120px]">Also</div>
-          <p className="text-[17px] leading-[1.7] text-muted m-0 max-w-[60ch] text-pretty">
+          <div className="text-[0.9375rem] text-muted min-w-[120px]">Also</div>
+          <p className="text-[1.0625rem] leading-[1.7] text-muted m-0 max-w-[60ch] text-pretty">
             <Link href="https://github.com/Prime-Cave/apidesignbp" variant="inline">
               apidesignbp
             </Link>{" "}

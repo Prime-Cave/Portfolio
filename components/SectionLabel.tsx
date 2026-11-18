@@ -8,8 +8,8 @@ export default function SectionLabel({
 }) {
   return (
     <header className="mb-[clamp(48px,8vw,88px)]">
-      <p className="text-[15px] text-muted m-0 mb-4">{label}</p>
-      <h2 className="text-[clamp(36px,6vw,64px)] leading-[1.02] tracking-[-0.04em] font-medium text-ink m-0 max-w-[16ch] text-balance">
+      <p className="text-[0.9375rem] text-muted m-0 mb-4">{label}</p>
+      <h2 className="text-[clamp(2.25rem,6vw,4rem)] leading-[1.02] tracking-[-0.04em] font-medium text-ink m-0 max-w-[16ch] text-balance">
         {title}
       </h2>
     </header>

@@ -13,21 +13,19 @@ export default function Stack() {
   return (
     <ChapterSection id="stack">
       <Reveal>
-        <SectionLabel number="04" label="Stack" />
+        <SectionLabel label="Stack" title="What I build with." />
       </Reveal>
       <Reveal>
         <div className="flex flex-col">
-          {ROWS.map((r, i) => (
+          {ROWS.map((r) => (
             <div
               key={r.label}
-              className={`flex flex-wrap gap-x-10 gap-y-3 py-6 ${
-                i < ROWS.length - 1 ? "border-b border-hairline" : ""
-              }`}
+              className="flex flex-wrap gap-x-10 gap-y-2 py-7 border-t border-hairline"
             >
-              <div className="font-mono text-[11px] tracking-[0.16em] uppercase text-muted min-w-[160px]">
+              <div className="text-[0.9375rem] text-muted min-w-[180px] pt-0.5">
                 {r.label}
               </div>
-              <div className="text-[17px] leading-[1.7] text-ink max-w-[52ch]">{r.value}</div>
+              <div className="text-[clamp(1.0625rem,1.9vw,1.25rem)] leading-[1.6] tracking-[-0.01em] text-ink max-w-[48ch]">{r.value}</div>
             </div>
           ))}
         </div>

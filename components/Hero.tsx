@@ -1,71 +1,98 @@
-import HeroHud from "./HeroHud";
-import Link from "./ui/Link";
+import type { CSSProperties } from "react";
+import { getImageProps } from "next/image";
+import s from "./Hero.module.css";
 
-const bracket = "absolute w-4 h-4 border-accent animate-hud-lock [animation-delay:760ms]";
+// Entrance timing: one wave, shrinking gaps (see Hero.module.css).
+const delay = (ms: number) => ({ "--delay": `${ms}ms` }) as CSSProperties;
+
+const IMAGE_ALT = "Anti-Freeze dashboard showing 1.4 GB to spare and how memory and disk are being used";
+
+// Wider screens get the full dashboard; phones get a close-up of the overview card,
+// which stays legible at narrow widths.
+const { props: { srcSet: wideSrcSet } } = getImageProps({
+  src: "/images/antifreeze-dashboard.png",
+  alt: IMAGE_ALT,
+  width: 2240,
+  height: 1600,
+  sizes: "(max-width: 1000px) 100vw, 888px",
+});
+const { props: narrowImg } = getImageProps({
+  src: "/images/antifreeze-dashboard-crop.png",
+  alt: IMAGE_ALT,
+  width: 1720,
+  height: 600,
+  sizes: "100vw",
+  priority: true,
+});
 
 export default function Hero() {
   return (
-    <section
-      id="hero"
-      className="relative min-h-[min(92vh,860px)] flex flex-col justify-center pt-30 pb-24"
-    >
-      <div aria-hidden="true" className="absolute -top-14 left-1/2 -translate-x-1/2 w-screen h-[calc(100%+56px)] overflow-hidden pointer-events-none z-0">
-        <div className="hero-grid" />
-        <div className="hero-orb-a" />
-        <div className="hero-orb-b" />
-        <div className="hero-fade" />
-        <div className="hero-scan" />
-      </div>
-
-      <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-screen overflow-hidden pointer-events-none z-0">
-        <div className="relative h-full max-w-[1000px] mx-auto">
-          <HeroHud />
-        </div>
-      </div>
-
-      <div className="relative z-[1] font-mono text-[11px] tracking-[0.2em] uppercase text-muted mb-7 animate-hero-in [animation-delay:0ms]">
-        Software Engineer · Systems &amp; Problem-Solving
-      </div>
-      <div className="relative z-[1] w-fit mb-8 animate-hero-in [animation-delay:70ms]">
-        <h1 className="text-[clamp(38px,7vw,76px)] leading-[1.02] tracking-[-0.03em] font-medium m-0 max-w-[16ch] text-balance">
-          Tomisin Akinfemiwa
-        </h1>
-        <span aria-hidden="true" className={`${bracket} -top-2.5 -left-3 border-t border-l`} />
-        <span aria-hidden="true" className={`${bracket} -top-2.5 -right-3 border-t border-r`} />
-        <span aria-hidden="true" className={`${bracket} -bottom-2.5 -left-3 border-b border-l`} />
-        <span aria-hidden="true" className={`${bracket} -bottom-2.5 -right-3 border-b border-r`} />
-      </div>
-      <p className="relative z-[1] text-[clamp(20px,3.1vw,30px)] leading-[1.34] font-normal text-ink m-0 mb-5 max-w-[22ch] tracking-[-0.015em] text-pretty animate-hero-in [animation-delay:140ms]">
-        I solve hard problems and build the <span className="text-accent">systems</span> around them.
-      </p>
-      <p className="relative z-[1] text-base leading-[1.6] text-muted m-0 mb-10 max-w-[60ch] text-pretty animate-hero-in [animation-delay:210ms]">
-        Algorithmic problem-solving, systems architecture, and shipped products. I like a good challenge, and
-        I learn fast.
+    <section id="hero" className={`${s.root} pt-[clamp(128px,22vh,208px)]`}>
+      <p
+        className={`${s.fade} flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[0.9375rem] text-muted m-0 mb-8`}
+        style={delay(0)}
+      >
+        <span>Tomisin Akinfemiwa · Software engineer</span>
+        <span className="whitespace-nowrap inline-flex items-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-accent" aria-hidden="true" />
+          Open to work
+        </span>
       </p>
 
-      <div className="relative z-[1] flex flex-col gap-6 animate-hero-in [animation-delay:280ms]">
-        <div className="flex flex-wrap items-center gap-3">
-          <Link href="/Tomisin-Akinfemiwa-CV.pdf" target="_blank" rel="noopener noreferrer" variant="button">
-            View CV ↗
-          </Link>
-          <Link href="mailto:Tomisin.Akinfemiwa@gmail.com" variant="ghost">
-            Email me
-          </Link>
+      <h1
+        className={`${s.enter} ${s.lead} text-[clamp(2.75rem,8.4vw,6rem)] leading-[0.98] tracking-[-0.045em] font-medium text-ink m-0 max-w-[13ch] text-balance`}
+        style={delay(0)}
+      >
+        I solve hard problems and build the systems around them.
+      </h1>
+
+      <p
+        className={`${s.enter} ${s.support} text-[clamp(1.125rem,1.9vw,1.375rem)] leading-[1.5] text-muted m-0 mt-9 max-w-[46ch] text-pretty`}
+        style={delay(120)}
+      >
+        Backend platforms in NestJS and PostgreSQL, native apps in Go and Flutter, and the tools in between. I learn fast.
+      </p>
+
+      <div className={`${s.enter} ${s.cta} flex flex-wrap items-center gap-x-8 gap-y-4 mt-12`} style={delay(200)}>
+        <a
+          href="/Tomisin-Akinfemiwa-CV.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`${s.button} inline-flex items-center h-12 px-6 rounded-full bg-ink text-bg text-[0.9375rem] font-medium hover:bg-white`}
+        >
+          View CV
+        </a>
+        <a
+          href="mailto:Tomisin.Akinfemiwa@gmail.com"
+          className={`${s.textLink} inline-flex items-center gap-1.5 h-12 text-[0.9375rem] text-ink`}
+        >
+          Email me <span className={s.arrow} aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <figure className="m-0 mt-[clamp(64px,10vh,112px)]">
+        <div
+          className={`${s.reveal} relative overflow-hidden rounded-[20px] bg-surface shadow-[0_40px_120px_-40px_rgba(0,0,0,0.9)]`}
+          style={delay(300)}
+        >
+          <picture>
+            <source media="(min-width: 640px)" srcSet={wideSrcSet} />
+            {/* eslint-disable-next-line jsx-a11y/alt-text -- alt comes from getImageProps */}
+            <img {...narrowImg} className="block w-full h-auto aspect-[1720/600] sm:aspect-[2240/1600]" />
+          </picture>
         </div>
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-4">
-          <span className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.12em] uppercase text-muted">
-            <span className="relative w-1.5 h-1.5 rounded-full bg-accent">
-              <span className="hud-loop absolute inset-0 rounded-full bg-accent animate-hud-ping" />
-            </span>
-            Open to work
+        <figcaption
+          className={`${s.fade} flex flex-wrap justify-between gap-x-6 gap-y-1 mt-5 text-[0.9375rem] text-muted`}
+          style={delay(700)}
+        >
+          <span>
+            <span className="text-ink">Anti-Freeze</span>, a menu bar app that warns before your Mac slows down.
           </span>
-          <span aria-hidden="true" className="w-4 h-px bg-hairline" />
-          <Link href="https://github.com/Prime-Cave">GitHub</Link>
-          <Link href="https://www.linkedin.com/in/tomisin-akinfemiwa">LinkedIn</Link>
-          <Link href="https://x.com/Ak_Tomisin">X / Twitter</Link>
-          <Link href="https://github.com/Prime-Cave/Codewars">Codewars</Link>
-        </div>
-      </div>
+          <a href="#work" className={`${s.textLink} text-ink inline-flex items-center gap-1.5`}>
+            Selected work <span className={s.arrow} aria-hidden="true">→</span>
+          </a>
+        </figcaption>
+      </figure>
     </section>
   );
 }

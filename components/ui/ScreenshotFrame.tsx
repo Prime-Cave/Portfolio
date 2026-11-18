@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 // Shared caption style for screenshots, videos and figure groups.
-export const CAPTION = "font-mono text-[13px] leading-[1.6] tracking-[0.01em] text-muted max-w-[70ch]";
+export const CAPTION = "text-[0.875rem] leading-[1.55] text-muted max-w-[64ch] text-pretty";
 
 export default function ScreenshotFrame({
   src,
@@ -21,16 +21,16 @@ export default function ScreenshotFrame({
   withBar?: boolean;
 }) {
   return (
-    <figure className="m-0 flex flex-col gap-3.5">
-      <div className="bg-surface border border-hairline rounded-xl p-2 shadow-[0_24px_48px_-28px_rgba(0,0,0,0.9)] transition-[transform,box-shadow,border-color] duration-[240ms] ease-out hover:-translate-y-[3px] hover:border-accent hover:shadow-[0_30px_56px_-26px_rgba(0,0,0,0.95)]">
+    <figure className="m-0 flex flex-col gap-4">
+      <div className="bg-surface rounded-2xl p-1.5 ring-1 ring-inset ring-white/[0.05] shadow-[0_32px_80px_-40px_rgba(0,0,0,0.9)]">
         {withBar && (
           <div className="flex items-center gap-1.5 px-2 pt-1.5 pb-2.5">
-            <span className="w-[7px] h-[7px] rounded-full bg-hairline" />
-            <span className="w-[7px] h-[7px] rounded-full bg-hairline" />
-            <span className="w-[7px] h-[7px] rounded-full bg-hairline" />
+            <span className="w-2 h-2 rounded-full bg-hairline" />
+            <span className="w-2 h-2 rounded-full bg-hairline" />
+            <span className="w-2 h-2 rounded-full bg-hairline" />
           </div>
         )}
-        <Image src={src} alt={alt} width={width} height={height} sizes={sizes} className="block w-full h-auto rounded-[7px]" />
+        <Image src={src} alt={alt} width={width} height={height} sizes={sizes} className="block w-full h-auto rounded-[11px]" />
       </div>
       {caption && (
         <figcaption className={CAPTION}>

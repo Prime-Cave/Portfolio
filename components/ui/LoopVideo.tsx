@@ -102,8 +102,8 @@ export default function LoopVideo({
   }, [active]);
 
   return (
-    <figure className="m-0 flex flex-col gap-3.5">
-      <div className="bg-surface border border-hairline rounded-xl p-2 shadow-[0_24px_48px_-28px_rgba(0,0,0,0.9)] transition-[transform,box-shadow,border-color] duration-[240ms] ease-out hover:-translate-y-[3px] hover:border-accent hover:shadow-[0_30px_56px_-26px_rgba(0,0,0,0.95)]">
+    <figure className="m-0 flex flex-col gap-4">
+      <div className="bg-surface rounded-2xl p-1.5 ring-1 ring-inset ring-white/[0.05] shadow-[0_32px_80px_-40px_rgba(0,0,0,0.9)]">
         <video
           ref={ref}
           autoPlay
@@ -115,7 +115,7 @@ export default function LoopVideo({
           aria-label={label}
           width={1600}
           height={900}
-          className="block w-full h-auto rounded-[7px]"
+          className="block w-full h-auto rounded-[11px]"
         >
           {active && (
             <>

@@ -1,0 +1,104 @@
+/*
+ * Sample hero: motion built from the vetted skills
+ * (emil-design-eng, choreograph, design-motion-principles).
+ *
+ * One entrance per element, non-uniform shrinking delays (0 / 120 / 200 / 300ms),
+ * custom ease-out, transform + opacity + filter + clip-path only, one-shot (no loops).
+ */
+
+.root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-reveal: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* Enter: opacity + rise + blur. `both` so delayed items don't flash their end state. */
+.enter {
+  animation: enter var(--dur, 620ms) var(--ease-out) var(--delay, 0ms) both;
+}
+
+.lead {
+  --dur: 760ms;
+  --rise: 18px;
+  --blur: 6px;
+}
+.support {
+  --rise: 10px;
+  --blur: 0px;
+}
+.cta {
+  --dur: 560ms;
+  --rise: 6px;
+  --blur: 0px;
+}
+/* Decoration fades in place: no movement. */
+.fade {
+  animation: fade 500ms ease var(--delay, 0ms) both;
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(var(--rise, 10px));
+    filter: blur(var(--blur, 0px));
+  }
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+/* The work image is revealed from the bottom and settles from a hair above full size. */
+.reveal {
+  animation: reveal 1100ms var(--ease-reveal) var(--delay, 300ms) both;
+}
+.reveal img {
+  animation: settle 1400ms var(--ease-out) var(--delay, 300ms) both;
+}
+@keyframes reveal {
+  from {
+    clip-path: inset(0 0 100% 0 round 20px);
+  }
+  to {
+    clip-path: inset(0 0 0 0 round 20px);
+  }
+}
+@keyframes settle {
+  from {
+    transform: scale(1.03);
+  }
+}
+
+/* Buttons answer the press; hover only where hover exists. */
+.button {
+  transition:
+    transform 160ms var(--ease-out),
+    background-color 200ms ease;
+}
+.button:active {
+  transform: scale(0.97);
+}
+@media (hover: hover) and (pointer: fine) {
+  .arrow {
+    transition: transform 200ms var(--ease-out);
+  }
+  .textLink:hover .arrow {
+    transform: translateX(3px);
+  }
+}
+
+/* Reduced motion: collapse the choreography. Keep the fades, drop movement and delays. */
+@media (prefers-reduced-motion: reduce) {
+  .enter,
+  .fade {
+    animation: fade 300ms ease both;
+  }
+  .reveal,
+  .reveal img {
+    animation: fade 300ms ease both;
+    clip-path: none;
+  }
+  .button:active {
+    transform: none;
+  }
+}

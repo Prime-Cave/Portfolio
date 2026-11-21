@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import LogoMark from "./ui/LogoMark";
 
 const SECTIONS = [
-  { id: "about", label: "About" },
   { id: "work", label: "Work" },
+  { id: "about", label: "About" },
   { id: "problem", label: "Problem-solving" },
   { id: "stack", label: "Stack" },
   { id: "contact", label: "Contact" },
@@ -13,11 +13,11 @@ const SECTIONS = [
 
 const NAV_LABELS: Record<string, string> = {
   hero: "Intro",
-  about: "01 · About",
-  work: "02 · Work",
-  problem: "03 · Problem-solving",
-  stack: "04 · Stack",
-  contact: "05 · Contact",
+  work: "Work",
+  about: "About",
+  problem: "Problem-solving",
+  stack: "Stack",
+  contact: "Contact",
 };
 
 export default function Nav() {
@@ -27,7 +27,9 @@ export default function Nav() {
   const linksRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const ids = SECTIONS.map((s) => s.id);
+    // Page order. The write-ups ("projects") sit after About but belong to Work.
+    const ids = ["work", "about", "projects", "problem", "stack", "contact"];
+    const navId = (id: string) => (id === "projects" ? "work" : id);
     const onResize = () => {
       const w = document.documentElement.clientWidth || window.innerWidth;
       setWide(w >= 760);
@@ -41,7 +43,7 @@ export default function Nav() {
         let cur = "hero";
         for (const id of ids) {
           const el = document.getElementById(id);
-          if (el && el.getBoundingClientRect().top <= line) cur = id;
+          if (el && el.getBoundingClientRect().top <= line) cur = navId(id);
         }
         setActive((prev) => (prev !== cur ? cur : prev));
       });
@@ -68,9 +70,9 @@ export default function Nav() {
   }, [active, wide]);
 
   return (
-    <nav className="fixed inset-x-0 top-0 z-50 bg-[rgba(14,14,16,0.86)] backdrop-blur-[8px] border-b border-hairline">
+    <nav className="fixed inset-x-0 top-0 z-50 bg-[rgba(14,14,16,0.72)] backdrop-blur-[16px] backdrop-saturate-150 border-b border-white/[0.04]">
       <div className="max-w-[1000px] mx-auto px-[clamp(20px,5vw,56px)] h-14 flex items-center justify-between gap-4">
-        <a href="#top" aria-label="Tomisin Akinfemiwa, back to top" className="flex font-mono text-xs tracking-[0.08em] text-ink">
+        <a href="#top" aria-label="Tomisin Akinfemiwa, back to top" className="flex text-ink rounded-md">
           <LogoMark size={28} />
         </a>
         {wide ? (
@@ -81,13 +83,13 @@ export default function Nav() {
                 data-nav={s.id}
                 data-active={active === s.id}
                 href={`#${s.id}`}
-                className="relative after:absolute after:-inset-x-1.5 after:-inset-y-2.5 after:content-[''] font-mono text-[11px] tracking-[0.14em] uppercase py-1 text-muted transition-colors duration-200 ease-out hover:text-ink data-[active=true]:text-ink"
+                className="relative after:absolute after:-inset-x-1.5 after:-inset-y-2.5 after:content-[''] text-[0.875rem] py-1 text-muted transition-colors duration-200 ease-out hover:text-ink data-[active=true]:text-ink"
               >
                 {s.label}
               </a>
             ))}
             <span
-              className="absolute -bottom-1.5 h-px bg-accent pointer-events-none transition-[left,width,opacity] duration-[260ms] ease-out"
+              className="absolute -bottom-1.5 h-px bg-accent pointer-events-none transition-[left,width,opacity] duration-[320ms] ease-out"
               style={{
                 left: indicator ? indicator.left : 0,
                 width: indicator ? indicator.width : 0,
@@ -96,7 +98,7 @@ export default function Nav() {
             />
           </div>
         ) : (
-          <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-muted">
+          <span className="text-[0.875rem] text-muted">
             {NAV_LABELS[active] ?? ""}
           </span>
         )}

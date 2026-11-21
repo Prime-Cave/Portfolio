@@ -1,7 +1,7 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
-import Work from "@/components/Work";
+import Work, { WorkIndex } from "@/components/Work";
 import ProblemSolving from "@/components/ProblemSolving";
 import Stack from "@/components/Stack";
 import Contact from "@/components/Contact";
@@ -13,6 +13,7 @@ export default function Home() {
       <Nav />
       <main id="top" className="max-w-[1000px] mx-auto px-[clamp(20px,5vw,56px)]">
         <Hero />
+        <WorkIndex />
         <About />
         <Work />
         <ProblemSolving />

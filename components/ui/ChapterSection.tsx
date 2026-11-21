@@ -8,10 +8,7 @@ export default function ChapterSection({
   children: React.ReactNode;
 }) {
   return (
-    <section
-      id={id}
-      className={`border-t border-hairline py-[clamp(72px,11vw,128px)] scroll-mt-[72px] ${className}`.trim()}
-    >
+    <section id={id} className={`py-[clamp(96px,15vw,176px)] scroll-mt-[64px] ${className}`.trim()}>
       {children}
     </section>
   );
